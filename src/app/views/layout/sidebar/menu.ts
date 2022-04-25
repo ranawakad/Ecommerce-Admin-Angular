@@ -11,6 +11,57 @@ export const MENU: MenuItem[] = [
     link: '/dashboard'
   },
   {
+    label: 'Governates',
+    icon: 'home',
+    subItems: [
+      {
+        label: 'All',
+        link: '/covernates/all',
+      },
+      {
+        label: 'Create',
+        link: '/covernates/create'
+      },
+    ]
+  },
+  {
+    label: 'Roles',
+    icon: 'home',
+    subItems: [
+      {
+        label: 'All',
+        link: '/roles/all',
+      },
+      {
+        label: 'Create',
+        link: '/roles/create'
+      },
+    ]
+  },
+  {
+    label: 'Admins',
+    icon: 'home',
+    subItems: [
+      {
+        label: 'All',
+        link: '/admins/all',
+      },
+      {
+        label: 'Create',
+        link: '/admins/create'
+      },
+    ]
+  },
+  {
+    label:'Governates',
+    isTitle:true,
+  }, 
+  {
+    label: 'Dashboard',
+    icon: 'home',
+    link: '/dashboard'
+  },
+  {
     label: 'Web Apps',
     isTitle: true
   },
