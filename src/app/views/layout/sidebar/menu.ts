@@ -11,7 +11,6 @@ export const MENU: MenuItem[] = [
     link: '/dashboard'
   },
   {
-
     label: 'Orders Management',
     icon: 'truck',
     subItems: [
@@ -30,8 +29,20 @@ export const MENU: MenuItem[] = [
       {
         label: 'On-way Orders',
         link: '/orders/onway',
-        {,
-      }    
+      }
+    ]
+  },
+  {
+    label: 'Sellers Management',
+    icon: 'slack',
+     subItems: [
+      {
+        label: 'Listing Sellers',
+        link: '/sellers/listing',
+      },
+    ]
+  },
+  {
     label: 'Governates',
     icon: 'home',
     subItems: [
@@ -59,16 +70,6 @@ export const MENU: MenuItem[] = [
       },
     ]
   },
-  {
-    label: 'Sellers Management',
-    icon: 'slack',
-     subItems: [
-      {
-        label: 'Listing Sellers',
-        link: '/sellers/listing',
-      },
-    ]
-  },
     {
     label: 'Admins',
     icon: 'home',
@@ -88,7 +89,7 @@ export const MENU: MenuItem[] = [
 
     label:'Governates',
     isTitle:true,
-  }, 
+  },
   {
     label: 'Dashboard',
     icon: 'home',
