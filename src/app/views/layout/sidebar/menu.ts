@@ -87,6 +87,27 @@ export const MENU: MenuItem[] = [
   },
   {
 
+    label: 'Customers',
+    icon: 'home',
+    subItems: [
+      {
+        label: 'All',
+        link: '/customers',
+      }
+    ]
+  },
+  {
+    label: 'Categories',
+    icon: 'home',
+    subItems: [
+      {
+        label: 'All',
+        link: '/categories/all',
+      }
+    ]
+  },
+  {
+
     label:'Governates',
     isTitle:true,
   },

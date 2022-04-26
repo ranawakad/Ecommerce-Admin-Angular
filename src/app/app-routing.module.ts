@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: '',
     component: BaseComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     children: [
       
       {
@@ -73,7 +73,20 @@ const routes: Routes = [
         path: 'general',
         loadChildren: () => import('./views/pages/general/general.module').then(m => m.GeneralModule)
       },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, 
+      
+      {
+        path: 'customers',
+        loadChildren: () => import('src/app/components/customers/customers.module').then(m => m.CustomersModule)
+      },
+      {
+        path: 'categories',
+        loadChildren: () => import('src/app/components/category/category.module').then(m => m.CategoryModule)
+      },
+      
+      
+
       // { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
