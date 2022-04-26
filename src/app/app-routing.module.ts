@@ -6,16 +6,21 @@ import { ErrorPageComponent } from './views/pages/error-page/error-page.componen
 
 
 const routes: Routes = [
-  { path:'auth', loadChildren: () => import('./views/pages/auth/auth.module').then(m => m.AuthModule) },
+  {
+    path: 'auth',
+    loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule)
+  },
   {
     path: '',
     component: BaseComponent,
     canActivate: [AuthGuard],
     children: [
+      
       {
         path: 'dashboard',
         loadChildren: () => import('./views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
+      
       {
         path: 'orders',
         loadChildren: () => import('./views/components/orders-management/order.module').then(m => m.OrderModule)

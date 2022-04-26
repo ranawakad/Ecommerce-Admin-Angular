@@ -11,6 +11,7 @@ export const MENU: MenuItem[] = [
     link: '/dashboard'
   },
   {
+
     label: 'Orders Management',
     icon: 'truck',
     subItems: [
@@ -29,20 +30,72 @@ export const MENU: MenuItem[] = [
       {
         label: 'On-way Orders',
         link: '/orders/onway',
+        {,
+      }    
+    label: 'Governates',
+    icon: 'home',
+    subItems: [
+      {
+        label: 'All',
+        link: '/covernates/all',
+      },
+      {
+        label: 'Create',
+        link: '/covernates/create'
+      },
+    ]
+  },
+  {
+    label: 'Roles',
+    icon: 'home',
+    subItems: [
+      {
+        label: 'All',
+        link: '/roles/all',
+      },
+      {
+        label: 'Create',
+        link: '/roles/create'
       },
     ]
   },
   {
     label: 'Sellers Management',
     icon: 'slack',
-    subItems: [
+     subItems: [
       {
         label: 'Listing Sellers',
         link: '/sellers/listing',
       },
     ]
   },
+    {
+    label: 'Admins',
+    icon: 'home',
+    subItems: [
+      {
+        label: 'All',
+        link: '/admins/all',
+      },
+      {
+        label: 'Create',
+        link: '/admins/create'
+
+      },
+    ]
+  },
   {
+
+    label:'Governates',
+    isTitle:true,
+  }, 
+  {
+    label: 'Dashboard',
+    icon: 'home',
+    link: '/dashboard'
+  },
+  {
+
     label: 'Web Apps',
     isTitle: true
   },

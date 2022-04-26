@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { LayoutModule } from './views/layout/layout.module';
@@ -15,10 +15,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     ErrorPageComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -27,8 +29,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     LayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     SweetAlert2Module.forRoot(),
+    HttpClientModule,
   ],
   providers: [
     AuthGuard,
