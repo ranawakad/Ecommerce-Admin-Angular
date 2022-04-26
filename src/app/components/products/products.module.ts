@@ -18,12 +18,12 @@ const routes: Routes = [
         pathMatch: 'full',
         component: AllProductsComponent
       },
+      // {
+      //   path: 'category?id=:category',
+      //   component: ProductCategories
+      // },
       {
-        path: 'category?id=:category',
-        component: ProductDetailsComponent
-      },
-      {
-        path: '?id=:id',
+        path: ':id',
         component: ProductDetailsComponent
       }
     ]
