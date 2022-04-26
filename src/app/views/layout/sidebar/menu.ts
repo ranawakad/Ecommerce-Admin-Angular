@@ -1,4 +1,4 @@
-import { MenuItem } from './menu.model';
+import {MenuItem} from './menu.model';
 
 export const MENU: MenuItem[] = [
   {
@@ -10,6 +10,20 @@ export const MENU: MenuItem[] = [
     icon: 'home',
     link: '/dashboard'
   },
+  {
+    label: 'Products',
+    isTitle: true
+  },
+  {
+    label: 'All',
+    link: '/products',
+  },
+  {
+    label: 'details',
+    link: '/products/2'
+  },
+
+
   {
     label: 'Governates',
     icon: 'home',
@@ -53,9 +67,9 @@ export const MENU: MenuItem[] = [
     ]
   },
   {
-    label:'Governates',
-    isTitle:true,
-  }, 
+    label: 'Governates',
+    isTitle: true,
+  },
   {
     label: 'Dashboard',
     icon: 'home',

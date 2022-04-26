@@ -1,7 +1,9 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
 import {ProductsService} from 'src/app/services/products.service';
 import {environment} from "src/environments/environment";
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import Swal from "sweetalert2";
+
 
 @Component({
   selector: 'app-all-products',
@@ -15,7 +17,7 @@ export class AllProductsComponent implements OnInit {
   totalItems: any;
   imageURL = environment.images
 
-  constructor(private productsService: ProductsService,private modalService: NgbModal) {
+  constructor(private productsService: ProductsService, private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -30,15 +32,31 @@ export class AllProductsComponent implements OnInit {
     })
   }
 
+  sweetalert(type: any, msg: string) {
+    Swal.fire({
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      title: msg,
+      icon: type
+    })
+  }
+
   deleteProduct(id: number) {
     this.productsService.deleteProduct(id).subscribe({
       next: (res) => {
-        res.data.msg
+        this.sweetalert('success', res.message)
+        this.products = this.products.filter((element: any) => {
+          return element.id != id;
+        })
       },
-      error: (err) => {
-        console.log(err.error.message)
+      error: () => {
+        this.sweetalert('error', 'Failed')
       }
     })
+
   }
 
   productById(index: number, product: any) {
@@ -47,16 +65,13 @@ export class AllProductsComponent implements OnInit {
 
   openVerticalCenteredModal(content: TemplateRef<any>) {
     this.modalService.open(content, {centered: true}).result.then((result) => {
-      if(result.confirm){
-        this.productsService.deleteProduct(result.id).subscribe({
-          next:(res)=>{},
-          error:(err)=>{}
-        })
+      if (result.confirm) {
+        this.deleteProduct(result.id);
       }
-    }).catch((res) => {});
+    });
   }
 
   openLgModal(content: TemplateRef<any>) {
-    this.modalService.open(content, {size: 'lg',scrollable:true})
+    this.modalService.open(content, {size: 'lg', scrollable: true})
   }
 }

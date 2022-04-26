@@ -1,7 +1,9 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {environment} from "../../../../environments/environment";
-import {ProductsService} from "../../../services/products.service";
+import {environment} from "src/environments/environment";
+import {ProductsService} from "src/app/services/products.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ActivatedRoute, Router} from '@angular/router';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-product-details',
@@ -11,54 +13,80 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 export class ProductDetailsComponent implements OnInit {
 
   page = 1;
-  products: any;
-  itemsPerPage = 30;
+  product: any;
+  orderItems: any
+  itemsPerPage = 100;
   totalItems: any;
   imageURL = environment.images
 
-  constructor(private productsService: ProductsService,private modalService: NgbModal) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private productsService: ProductsService, private modalService: NgbModal) {
+
   }
 
   ngOnInit(): void {
-    this.getPage(this.page);
+
+    // @ts-ignore
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+
+      let id = paramMap.get('id') ? Number(this.activatedRoute.snapshot.paramMap.get('id')) : 0
+      if (id) {
+        console.log(id);
+        this.getPage(id)
+      }
+
+    })
   }
 
   getPage(page: any) {
-    this.productsService.getAllProducts(+page).subscribe((res: any) => {
-      this.products = res.data.data;
-      this.totalItems = res.data.total;
-      this.itemsPerPage = res.data.per_page;
-    })
+    this.productsService.getProductOrders(page).subscribe((res: any) => {
+        console.log(res.data.product)
+        console.log(res.data.orderItems)
+        this.product = res.data.product;
+        this.orderItems = res.data.orderItems;
+        this.totalItems = res.data.orderItems.length;
+      },
+      (err) => {
+        this.router.navigate(['/error/404'])
+      }
+    )
   }
 
   deleteProduct(id: number) {
     this.productsService.deleteProduct(id).subscribe({
       next: (res) => {
-        res.data.msg
+        this.sweetalert('success', res.message);
+        this.router.navigate(['/products']);
       },
-      error: (err) => {
-        console.log(err.error.message)
+      error: () => {
+        this.sweetalert('error', 'Failed')
       }
     })
+
   }
 
-  productById(index: number, product: any) {
-    return product.id ?? undefined;
+  orderItemById(index: number, orderItem: any) {
+    return orderItem.id ?? undefined;
+  }
+
+  sweetalert(type: any, msg: string) {
+    Swal.fire({
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      title: msg,
+      icon: type
+    })
   }
 
   openVerticalCenteredModal(content: TemplateRef<any>) {
     this.modalService.open(content, {centered: true}).result.then((result) => {
-      if(result.confirm){
-        this.productsService.deleteProduct(result.id).subscribe({
-          next:(res)=>{},
-          error:(err)=>{}
-        })
+      if (result.confirm) {
+        this.deleteProduct(result.id);
       }
-    }).catch((res) => {});
+    });
   }
 
-  openLgModal(content: TemplateRef<any>) {
-    this.modalService.open(content, {size: 'lg',scrollable:true})
-  }
 }
 

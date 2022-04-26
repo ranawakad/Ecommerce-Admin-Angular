@@ -88,7 +88,8 @@
                   <p><b>Seller #: </b>{{product.seller_id}}</p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary" (click)="modal.close()">Close</button>
+                  <a class="btn btn-primary" (click)="modal.close()" routerLink="{{product.id}}">Item Orders</a>
+                  <button type="button" class="btn btn-dark" (click)="modal.close()">Close</button>
                 </div>
               </ng-template>
 
