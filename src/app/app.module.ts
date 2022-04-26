@@ -11,7 +11,8 @@ import { AppComponent } from './app.component';
 import { ErrorPageComponent } from './views/pages/error-page/error-page.component';
 
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
-import { RolesComponent } from './components/roles/roles.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 
@@ -19,17 +20,16 @@ import { RolesComponent } from './components/roles/roles.component';
   declarations: [
     AppComponent,
     ErrorPageComponent,
-    RolesComponent,
-  
-    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SweetAlert2Module.forRoot(),
     HttpClientModule,
-  
   ],
   providers: [
     AuthGuard,
