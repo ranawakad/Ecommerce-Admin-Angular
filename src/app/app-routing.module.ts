@@ -62,7 +62,11 @@ const routes: Routes = [
       {
         path: 'customers',
         loadChildren: () => import('src/app/components/customers/customers.module').then(m => m.CustomersModule)
-      }
+      },
+      {
+        path: 'categories',
+        loadChildren: () => import('src/app/components/category/category.module').then(m => m.CategoryModule)
+      },
       
       
       // { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }

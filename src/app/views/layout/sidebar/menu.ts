@@ -63,6 +63,16 @@ export const MENU: MenuItem[] = [
     ]
   },
   {
+    label: 'Categories',
+    icon: 'home',
+    subItems: [
+      {
+        label: 'All',
+        link: '/categories/all',
+      }
+    ]
+  },
+  {
     label:'Governates',
     isTitle:true,
   }, 
