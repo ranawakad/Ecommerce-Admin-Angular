@@ -5,7 +5,8 @@ import { RegisterComponent } from './register/register.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 const routes: Routes = [
   {
@@ -36,7 +37,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
-    NgbAlertModule
+    NgbAlertModule,
+    
   ]
 })
 export class AuthModule { }
