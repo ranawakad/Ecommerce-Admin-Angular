@@ -28,6 +28,7 @@
               <th class="text-center text-uppercase">Email</th>
               <th class="text-center text-uppercase">Phone</th>
               <th class="text-center text-uppercase">Address</th>
+              <th class="text-center text-uppercase">Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -45,45 +46,25 @@
                 <td class="text-center text-lg text-medium">{{customer.phone}}</td>
                 <td class="text-center text-lg text-medium">{{customer.address}}</td>
                 <td>
-                  <!-- <button class="btn btn-primary px-2" (click)="openLgModal(details)">DETAILS</button>
-                  <button class="btn btn-danger px-2" (click)="openVerticalCenteredModal(deleteConfirm)">DELETE</button> -->
+                  <!-- <button class="btn btn-primary px-2" (click)="openLgModal(details)">DETAILS</button> -->
+                  <button class="btn btn-danger px-2" (click)="openVerticalCenteredModal(deleteConfirm)">DELETE</button>
                 </td>
   
                 <!-- Modal -->
-                <!-- <ng-template #details let-modal>
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Product Details</h5>
-                    <button type="button" class="btn-close" (click)="modal.close({confirm:false})"
-                            aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <h2>{{product.name}}</h2>
-                    <img class="card-img" [src]="imageURL+'/products/'+product.image" [alt]="product.name"
-                         onerror="this.src='/assets/images/others/placeholder.jpg'">
-                    <p><b>Description: </b>{{product.description}}</p>
-                    <p><b>Product #: </b>{{product.id}}</p>
-                    <p><b>Total Sold Items: </b>{{product.soldCount}}</p>
-                    <p><b>Seller #: </b>{{product.seller_id}}</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" (click)="modal.close()">Close</button>
-                  </div>
-                </ng-template>
-  
                 <ng-template #deleteConfirm let-modal>
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
-                    <button type="button" class="btn-close" (click)="modal.close({confirm:false})"
-                            aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body"><p>Are you sure ?</p></div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" (click)="modal.close({confirm:true,id:product.id})">CONFIRM</button>
-                    <button type="button" class="btn btn-secondary" (click)="modal.close({confirm:false})">Close</button>
-                  </div>
-                </ng-template> -->
-              </tr>
-            </ng-container>
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                      <button type="button" class="btn-close" (click)="modal.close({confirm:false})"
+                              aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body"><p>Are you sure ?</p></div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" (click)="modal.close({confirm:true,id:customer.id})">CONFIRM</button>
+                      <button type="button" class="btn btn-secondary" (click)="modal.close({confirm:false})">Close</button>
+                    </div>
+                  </ng-template>
+                </tr>
+              </ng-container>
   
             </tbody>
           </table>

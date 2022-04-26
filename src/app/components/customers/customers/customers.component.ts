@@ -2,6 +2,7 @@ import { Component, OnInit,TemplateRef } from '@angular/core';
 import {environment} from "src/environments/environment";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {CustomersService} from 'src/app/services/customers.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
@@ -28,11 +29,31 @@ export class CustomersComponent implements OnInit {
       this.itemsPerPage = res.data.per_page;
     })
   }
+  sweetalert(type: any, msg: string) {
+    Swal.fire({
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      title: msg,
+      icon: type
+    })
+  }
 
   deleteCustomer(id: number) {
     this.customersService.deleteCustomer(id).subscribe({
       next: (res) => {
-        res.data.msg
+        res.data.message
+        Swal.fire({
+          toast: true,
+          position: 'top',
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+          title: res.data.message,
+          icon: 'success'
+        })
       },
       error: (err) => {
         console.log(err.error.message)
@@ -46,13 +67,10 @@ export class CustomersComponent implements OnInit {
 
   openVerticalCenteredModal(content: TemplateRef<any>) {
     this.modalService.open(content, {centered: true}).result.then((result) => {
-      if(result.confirm){
-        this.customersService.deleteCustomer(result.id).subscribe({
-          next:(res)=>{},
-          error:(err)=>{}
-        })
+      if (result.confirm) {
+        this.deleteCustomer(result.id);
       }
-    }).catch((res) => {});
+    });
   }
 
   openLgModal(content: TemplateRef<any>) {
