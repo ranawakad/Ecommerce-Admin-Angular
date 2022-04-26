@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl:'http://127.0.0.1:8000/api/super-admin'
+  apiURL:'http://127.0.0.1:8000/api',
+  apiAdminURL:'http://127.0.0.1:8000/api/admin',
+  Images:'http://127.0.0.1:8000',
 };
 
 /*

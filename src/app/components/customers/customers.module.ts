@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomersComponent } from './customers/customers.component';
 import { RouterModule, Routes } from '@angular/router';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 const routes:Routes=[
   {path:'',component:CustomersComponent}
 ]
@@ -13,7 +13,8 @@ const routes:Routes=[
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    NgxPaginationModule
   ]
 })
 export class CustomersModule { }

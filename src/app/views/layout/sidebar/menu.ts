@@ -58,7 +58,7 @@ export const MENU: MenuItem[] = [
     subItems: [
       {
         label: 'All',
-        link: '/customers/index',
+        link: '/customers',
       }
     ]
   },
