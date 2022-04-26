@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
+import { Page } from 'src/app/core/models/page';
 import { OrderService } from 'src/app/core/services/order.service';
 import Swal from 'sweetalert2';
 
@@ -9,8 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./processing-orders.component.scss']
 })
 export class ProcessingOrdersComponent implements OnInit {
-
-  orders = []
+  page: Page = {} as Page;
   rows = [];
   loadingIndicator = true;
   reorderable = true;

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Order } from 'src/app/core/models/order';
+import { Page } from 'src/app/core/models/page';
 import { Seller } from 'src/app/core/models/seller';
 import { OrderService } from 'src/app/core/services/order.service';
 import { SellerService } from 'src/app/core/services/seller.service';
@@ -16,32 +17,47 @@ import Swal from 'sweetalert2';
 export class OrderDetailsComponent implements OnInit {
   orderID:number = 0;
   orderDetails:Order[] = []
+
+  page: Page = {} as Page;
   rows = [];
   loadingIndicator = true;
   reorderable = true;
   ColumnMode = ColumnMode;
-
   basicModalCloseResult: string = '';
-
   seller:Seller = {} as Seller;
-  myFlag = true;
+
+
   constructor(private orderService:OrderService,
     private sellerService:SellerService,
     private activatedRoute:ActivatedRoute,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal)
+    {
+      this.page.pageNumber = 1;
+      this.page.size = 3;
+    }
 
   ngOnInit(): void {
 
     this.activatedRoute.paramMap.subscribe((paramMap)=>{
       this.orderID = (paramMap.get('id'))?Number(this.activatedRoute.snapshot.paramMap.get('id')):0;
-
-      this.orderService.orderDetails(this.orderID).subscribe(res=>{
-
-        this.orderDetails = res.data;
-        console.log(this.orderDetails);
-      })
+      this.setPage({offset: 0});
     });
 
+    // console.log(this.orderID);
+  }
+
+  setPage(pageInfo: any) {
+
+    this.page.pageNumber = pageInfo.offset + 1;
+    this.orderService.orderDetails(this.orderID,pageInfo.offset + 1).subscribe((pagedData: any) => {
+
+      this.page.pageNumber = pagedData.data.current_page - 1;
+      this.page.size = pagedData.data.per_page
+      this.page.totalElements = pagedData.data.total
+      this.page.totalPages = pagedData.data.last_page
+      this.rows = pagedData.data.data;
+      console.log(this.rows)
+    });
   }
   openVerticalCenteredModal(content: TemplateRef<any>, ID:number) {
 

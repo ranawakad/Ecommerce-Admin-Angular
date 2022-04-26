@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class OnWayOrdersComponent implements OnInit {
   page: Page = {} as Page;
-  orders = []
+
   rows = [];
   loadingIndicator = true;
   reorderable = true;
@@ -26,10 +26,6 @@ export class OnWayOrdersComponent implements OnInit {
   ngOnInit(): void {
 
     this.setPage({offset: 0});
-    this.orderService.onway().subscribe(res=>{
-      this.orders = res.data;
-      console.log(this.orders)
-    })
   }
 
   setPage(pageInfo: any) {
