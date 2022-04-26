@@ -53,6 +53,16 @@ export const MENU: MenuItem[] = [
     ]
   },
   {
+    label: 'Customers',
+    icon: 'home',
+    subItems: [
+      {
+        label: 'All',
+        link: '/customers/index',
+      }
+    ]
+  },
+  {
     label:'Governates',
     isTitle:true,
   }, 
