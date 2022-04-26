@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-  apiURL: 'http://localhost:8000/api',
+  // apiURL: 'http://localhost:8000/api',
   images: 'http://localhost:8000',
   apiAdminURL: 'http://localhost:8000/api/super-admin',
+  apiUrl: 'http://localhost:8000/api/super-admin',
 
 };
 
