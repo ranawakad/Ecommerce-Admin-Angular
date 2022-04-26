@@ -10,7 +10,7 @@ export const environment = {
   Images:'http://127.0.0.1:8000',
 
 
-  apiUrl:'http://127.0.0.1:8000/api/super-admin',
+  apiUrl:'http://127.0.0.1:8000/api/admin',
   apiUrlAdmin:'http://127.0.0.1:8000/api/admin',
 
   // apiURL: 'http://localhost:8000/api',
