@@ -3,6 +3,7 @@ import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Order } from 'src/app/core/models/order';
 import { Page } from 'src/app/core/models/page';
 import { OrderService } from 'src/app/core/services/order.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-fulfilled-orders',
@@ -45,7 +46,21 @@ export class FulfilledOrdersComponent implements OnInit {
   }
 
   details(value:number){
-
     console.log(value);
+  }
+
+  setOnWay(value:number){
+
+    this.orderService.setOnWay(value).subscribe(res=>{
+        console.log(res.message);
+        Swal.fire({
+          toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, timerProgressBar: true, title: res.message, icon: 'success'
+        })
+      },err=>{
+        Swal.fire({
+          toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, timerProgressBar: true, title: err.message, icon: 'error'
+        })
+      });
+
   }
 }

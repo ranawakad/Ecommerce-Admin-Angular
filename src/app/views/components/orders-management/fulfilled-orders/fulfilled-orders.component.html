@@ -31,6 +31,11 @@
                 <a type="button" class="btn btn-outline-primary btn-icon-text"  href="orders/{{value}}"><i class="feather icon-layers btn-icon-prepend"></i> Details</a>
               </ng-template>
              </ngx-datatable-column>
+             <ngx-datatable-column name="Actions" prop="id">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"et-row="row">
+                      <button type="button" class="btn btn-outline-primary btn-icon-text" (click)='setOnWay(value)'><i class="feather icon-check-square btn-icon-prepend"></i> Set On-way</button>
+                    </ng-template>
+             </ngx-datatable-column>
           </ngx-datatable>
         </div>
       </div>
