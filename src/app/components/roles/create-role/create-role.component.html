@@ -1,0 +1,95 @@
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/roles/all">Roles</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create</li>
+    </ol>
+</nav>
+<div class="d-flex justify-content-center mt-5 h-100">
+    <div class="align-middle w-50 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Create New Role</h6>
+
+                <aw-wizard #wizardForm>
+
+                    <aw-wizard-step stepTitle="Role Name">
+                        <form (ngSubmit)="form1Submit()" [formGroup]="validationForm1">
+
+                            <div class="row mb-3">
+                                <label for="roleName" class="col-sm-3 col-form-label">Role name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="roleName" formControlName="roleName"
+                                        [ngClass]="{'is-invalid': (isForm1Submitted && form1.roleName?.errors)||errors?.name}"
+                                        placeholder="Role name"
+                                        [value]="editRole?.name">
+                                    <div *ngIf="isForm1Submitted && form1.roleName.errors?.required"
+                                        class="invalid-feedback">
+                                        Required
+                                    </div>
+                                    <div *ngIf="errors?.name"
+                                        class="invalid-feedback">
+                                       {{errors?.name}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center mt-2">
+                                <button class="btn btn-primary" type="submit">Continue</button>
+                            </div>
+                        </form>
+                    </aw-wizard-step>
+
+                    <aw-wizard-step stepTitle="Assign Role Permissions">
+                        <form (ngSubmit)="form2Submit()" [formGroup]="validationForm2">
+                            <div class="row mb-3">
+                                <label for="permissins" class="col-sm-3 col-form-label">Permissins</label>
+                                <ng-select #select
+                                      [items]="permissions"
+                                      [multiple]=true bindLabel="name" 
+                                      [selectableGroup]="true" [selectableGroupAsModel]="false" 
+                                      [closeOnSelect]="false"
+                                      bindValue="id"
+                                      [hideSelected]="true"
+                                      formControlName="permissins"
+                                      [ngClass]="{'is-invalid': isForm2Submitted && form2.permissions?.errors}"
+                                     >
+                                </ng-select>
+                                <div *ngIf="isForm2Submitted && form2.permissins.errors"
+                                        class="invalid-feedback">
+                                        Required
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-center mt-2">
+                                <button class="btn btn-secondary me-2" type="button" awPreviousStep>Back</button>
+                                <button class="btn btn-primary" type="submit">Continue</button>
+                            </div>
+                        </form>
+                    </aw-wizard-step>
+                    <aw-wizard-step stepTitle="Save">
+                        <div class="text-center">
+                            <i data-feather="check-circle" appFeatherIcon class="text-success mt-4 mb-2 icon-xxl"></i>
+                            <h3 class="text-muted mb-3">{{form1.roleName.value}} </h3>
+                            <p class="w-75 mx-auto mb-4 text-muted">
+                                Are you sure for save this role !
+                            </p>
+                        </div>
+                        <div class="d-flex justify-content-center mt-2">
+                            <button class="btn btn-secondary me-2" type="button" awPreviousStep>Back</button>
+                            <button class="btn btn-success" type="button" (click)="finishFunction()">Finish</button>
+                        </div>
+                    </aw-wizard-step>
+
+                </aw-wizard>
+
+            </div>
+        </div>
+    </div>
+</div>
+<swal
+  #addeSwal
+   title="Role has been saved" 
+    text=""
+    icon="success" 
+  >
+</swal>

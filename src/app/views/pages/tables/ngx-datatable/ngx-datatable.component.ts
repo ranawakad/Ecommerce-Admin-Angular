@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
+import { RoleModule } from 'src/app/components/roles/role.module';
 
 @Component({
   selector: 'app-ngx-datatable',
@@ -12,7 +13,7 @@ export class NgxDatatableComponent implements OnInit {
   loadingIndicator = true;
   reorderable = true;
   ColumnMode = ColumnMode;
-
+  
   constructor() {
     this.fetch((data: any) => {
       this.rows = data;

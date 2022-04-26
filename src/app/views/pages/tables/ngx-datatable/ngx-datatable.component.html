@@ -23,7 +23,7 @@
         <h6 class="card-title">Ngx-Datatable</h6>
         <div class="table-responsive">
           <ngx-datatable
-            class="bootstrap"
+            class="bootstrap  expandable"
             [rows]="rows"
             [loadingIndicator]="loadingIndicator"
             [columnMode]="ColumnMode.force"
@@ -37,6 +37,20 @@
             <ngx-datatable-column name="Age"></ngx-datatable-column>
             <ngx-datatable-column name="City" prop="address.city"></ngx-datatable-column>
             <ngx-datatable-column name="State" prop="address.state"></ngx-datatable-column>
+            <ngx-datatable-column name="Controlls" prop="id">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                                    let-row="row">
+                                    <button type="button" class="btn btn-outline-success"
+                                        >Update {{value}}</button>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Controlls" prop="id">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                                    let-row="row">
+                                    <button type="button" class="btn btn-outline-danger"
+                                        >Delete {{value}}</button>
+              </ng-template>
+            </ngx-datatable-column>
           </ngx-datatable>
         </div>
       </div>
