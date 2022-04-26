@@ -1,0 +1,36 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/roles">Roles</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{selectedRole.name}}</li>
+    </ol>
+</nav>
+<div class="d-flex justify-content-center mt-5 h-100">
+    <div class="align-middle w-50 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title">{{selectedRole.name}}</h6>
+            <p class="text-muted mb-3">Permissins</p>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Permation Name</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let permission of selectedRole.permissions">
+                    <th>1</th>
+                    <td>{{permission.name}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+</div>
+
+

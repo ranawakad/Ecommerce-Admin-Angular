@@ -1,0 +1,82 @@
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/roles/all">Roles</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create</li>
+    </ol>
+</nav>
+<div class="d-flex justify-content-center mt-5 h-100">
+    <div class="align-middle w-50 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Edit Admin roles</h6>
+
+                <aw-wizard #wizardForm>
+
+                    <aw-wizard-step stepTitle="Role Name">
+                        <div class="d-flex justify-content-center mt-5 mb-5">    
+                            <p>Be carfull when you edit roles of admin</p>
+                        </div>
+                        
+                            <div class="d-flex justify-content-center mt-2">
+                                
+                                <button (click)="Submit()" class="btn btn-primary" type="submit">Continue</button>
+                            </div>
+                        
+                    </aw-wizard-step>
+
+                    <aw-wizard-step stepTitle="Assign Admin Role ">
+                        <form (ngSubmit)="formSubmit()" [formGroup]="validationForm">
+                            <div class="row mb-3">
+                                <label for="permissins" class="col-sm-3 col-form-label">Permissins</label>
+                                <ng-select #select
+                                      [items]="roles"
+                                      [multiple]=true bindLabel="name" 
+                                      [selectableGroup]="true" [selectableGroupAsModel]="false" 
+                                      [closeOnSelect]="false"
+                                      [hideSelected]="true"
+                                      bindValue="id"
+                                      formControlName="roles"
+                                      [ngClass]="{'is-invalid': isForm2Submitted && form.roles?.errors}"
+                                     >
+                                </ng-select>
+                                <div *ngIf="isForm2Submitted && form.roles.errors"
+                                        class="invalid-feedback">
+                                        Required
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-center mt-2">
+                                <button class="btn btn-secondary me-2" type="button" awPreviousStep>Back</button>
+                                <button class="btn btn-primary" type="submit">Continue</button>
+                            </div>
+                        </form>
+                    </aw-wizard-step>
+                    <aw-wizard-step stepTitle="Save">
+                        <div class="text-center">
+                            <i data-feather="check-circle" appFeatherIcon class="text-success mt-4 mb-2 icon-xxl"></i>
+                            <h3 class="text-muted mb-3">{{selectAdmin?.name}} </h3>
+                            <p class="w-75 mx-auto mb-4 text-muted">
+                                Are you sure for updated admin roles  !
+                            </p>
+                        </div>
+                        <div class="d-flex justify-content-center mt-2">
+                            <button class="btn btn-secondary me-2" type="button" awPreviousStep>Back</button>
+                            <button class="btn btn-success" type="button" (click)="finishFunction()">Finish</button>
+                        </div>
+                    </aw-wizard-step>
+
+                </aw-wizard>
+
+            </div>
+        </div>
+    </div>
+</div>
+<swal
+  #addeSwal
+   title="Role has been saved" 
+    text=""
+    icon="success" 
+  >
+</swal>
+

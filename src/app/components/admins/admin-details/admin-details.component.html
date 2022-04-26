@@ -1,0 +1,52 @@
+
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/admins">Admins</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{selectedAdmin?.name}}</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+        
+          <div id="content">
+            <ul class="timeline">
+              <li class="event" >
+                <h3 class="title">Name</h3>
+                <p class="ps-2">{{selectedAdmin?.name}}</p>
+              </li>
+              <li class="event" >
+                <h3 class="title">Email</h3>
+                <a href="mailto:{{selectedAdmin?.email}}" class="ps-2">{{selectedAdmin?.email}}</a>    
+              </li>
+              <li class="event" >
+                <h3 class="title">Roles</h3>
+                <ng-container *ngFor="let role of selectedAdmin?.roles" >
+                    <a routerLink="/roles/details/{{role.id}}" class="ps-2" >{{role.name}}</a><br>
+                </ng-container>
+              </li>
+              <li class="event" >
+                <h3 class="title">Phone</h3>
+                <p class="ps-2">{{selectedAdmin?.phone}}</p>    
+              </li>
+              <li class="event" >
+                <h3 class="title">Governorate</h3>
+                <p class="ps-2">{{selectedAdmin?.city.governorate_name}}</p>    
+              </li>
+              <li class="event" >
+                <h3 class="title">City</h3>
+                <p class="ps-2">{{selectedAdmin?.city.name}}</p>    
+              </li>
+              <li class="event" >
+                <h3 class="title">Address</h3>
+                <p class="ps-2">{{selectedAdmin?.address}}</p>    
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
