@@ -18,24 +18,24 @@ export class OrderService {
         })};
      }
 
-     unfulfilled():Observable<any>{
-      return this.httpClient.get(`${environment.apiAdminURL}/orders/unfulfilled`,this.httpOptions)
+     unfulfilled(page: number = 1):Observable<any>{
+      return this.httpClient.get(`${environment.apiAdminURL}/orders/unfulfilled?page=${page}`,this.httpOptions)
      }
 
-     fulfilled():Observable<any>{
-      return this.httpClient.get(`${environment.apiAdminURL}/orders/fulfilled`,this.httpOptions)
+     fulfilled(page: number = 1):Observable<any>{
+      return this.httpClient.get(`${environment.apiAdminURL}/orders/fulfilled?page=${page}`,this.httpOptions)
      }
 
      onway(page: number = 1):Observable<any>{
       return this.httpClient.get(`${environment.apiAdminURL}/orders/onwayorders?page=${page}`,this.httpOptions)
      }
 
-     processingOrders():Observable<any>{
-      return this.httpClient.get(`${environment.apiAdminURL}/orders/processing`,this.httpOptions)
+     processingOrders(page: number = 1):Observable<any>{
+      return this.httpClient.get(`${environment.apiAdminURL}/orders/processing?page=${page}`,this.httpOptions)
      }
 
-     orderDetails(ID:number):Observable<any>{
-      return this.httpClient.get(`${environment.apiAdminURL}/orders/${ID}`,this.httpOptions)
+     orderDetails(ID:number,page: number = 1):Observable<any>{
+      return this.httpClient.get(`${environment.apiAdminURL}/orders/${ID}?page=${page}`,this.httpOptions)
      }
 
      setOnWay(ID:number):Observable<any>{

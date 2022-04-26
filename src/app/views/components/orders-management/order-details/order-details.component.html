@@ -9,12 +9,17 @@
         <div class="table-responsive">
           <ngx-datatable
             class="bootstrap"
-            [rows]="orderDetails"
+            [rows]="rows"
             [loadingIndicator]="loadingIndicator"
             [columnMode]="ColumnMode.force"
             [footerHeight]="50"
             [limit]="10"
             rowHeight="auto"
+            [externalPaging]="true"
+            [count]="page.totalElements"
+            [offset]="page.pageNumber"
+            [limit]="page.size"
+            (page)="setPage($event)"
           >
             <ngx-datatable-column name="Product ID" prop="product_id"></ngx-datatable-column>
             <ngx-datatable-column name="Product Name" prop="name"></ngx-datatable-column>
@@ -25,7 +30,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Price" prop="price"></ngx-datatable-column>
             <ngx-datatable-column name="Picked" prop="picked"></ngx-datatable-column>
-            <ngx-datatable-column name="Total" prop="total"></ngx-datatable-column>
+            <ngx-datatable-column name="Quantity" prop="quantity"></ngx-datatable-column>
             <ngx-datatable-column name="Fulfilled" prop="fulfilled"></ngx-datatable-column>
             <ngx-datatable-column name="Actions" prop="product_id">
               <!-- Button trigger modal -->

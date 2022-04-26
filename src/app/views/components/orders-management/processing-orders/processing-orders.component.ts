@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
+import { Page } from 'src/app/core/models/page';
 import { OrderService } from 'src/app/core/services/order.service';
 import Swal from 'sweetalert2';
 
@@ -9,8 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./processing-orders.component.scss']
 })
 export class ProcessingOrdersComponent implements OnInit {
-
-  orders = []
+  page: Page = {} as Page;
   rows = [];
   loadingIndicator = true;
   reorderable = true;
@@ -20,13 +20,27 @@ export class ProcessingOrdersComponent implements OnInit {
     private orderService:OrderService
   ) {
 
+    this.page.pageNumber = 1;
+    this.page.size = 3
   }
 
   ngOnInit(): void {
-    this.orderService.processingOrders().subscribe(res=>{
-      this.orders = res.data;
-      console.log(this.orders)
-    })
+    this.setPage({offset: 0});
+  }
+
+
+  setPage(pageInfo: any) {
+
+    this.page.pageNumber = pageInfo.offset + 1;
+    this.orderService.processingOrders(pageInfo.offset + 1).subscribe((pagedData: any) => {
+
+      this.page.pageNumber = pagedData.data.current_page - 1;
+      this.page.size = pagedData.data.per_page
+      this.page.totalElements = pagedData.data.total
+      this.page.totalPages = pagedData.data.last_page
+      this.rows = pagedData.data.data;
+      console.log(this.rows)
+    });
   }
 
   setOnWay(value:number){
