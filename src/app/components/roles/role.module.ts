@@ -47,7 +47,8 @@ const routes: Routes = [
   declarations: [
     AllRolesComponent,
     CreateRoleComponent,
-    RoleDetailsComponent
+    RoleDetailsComponent,
+    RolesComponent 
   ],
   imports: [
     CommonModule,
