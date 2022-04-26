@@ -31,4 +31,8 @@ export class ProductsService {
   deleteProduct(id: number): Observable<any> {
     return this.httpClient.delete(`${environment.apiURL}/products/${id}`)
   }
+
+  getProductOrders(id: number = 1): Observable<any> {
+    return this.httpClient.get(`${environment.apiURL}/products/${id}/orders`)
+  }
 }

@@ -1,4 +1,7 @@
 import {Injectable} from '@angular/core';
+import {environment} from "src/environments/environment";
+import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +12,7 @@ export class CitiesService {
   }
 
   getAllCities(): Observable<any[]> {
-    return this.httpClient.get<City[]>(`${environment.apiURL}/city/${cityID}`)
+    return this.httpClient.get<any[]>(`${environment.apiURL}/city`)
   }
 
   createCity(city: object): Observable<any[]> {

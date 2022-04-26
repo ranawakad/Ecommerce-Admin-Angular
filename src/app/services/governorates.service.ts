@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import {environment} from "../../environments/environment";
+import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +12,9 @@ export class GovernoratesService {
   }
 
   getAllGovernorates(): Observable<any[]> {
-    return this.httpClient.get<any[]>(`${environment.apiURL}/governorates/${governorateID}`)
+    return this.httpClient.get<any[]>(`${environment.apiURL}/governorates`)
   }
-s
+
   createGovernorate(governorate: object): Observable<any[]> {
     return this.httpClient.post<any[]>(`${environment.apiURL}/governorates`, governorate)
   }
@@ -25,5 +28,6 @@ s
   }
 
   deleteGovernorate(governorateId: number): Observable<any[]> {
-    return this.httpClient.delete<City[]>(`${environment.apiURL}/city/${cityId}`)
+    return this.httpClient.delete<any[]>(`${environment.apiURL}/governorates/${governorateId}`)
   }
+}
