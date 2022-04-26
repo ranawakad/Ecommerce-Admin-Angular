@@ -1,0 +1,84 @@
+
+
+<div class="row">
+  <div class="col-md-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">Order ID : {{orderID}} </h6>
+        <hr>
+        <div class="table-responsive">
+          <ngx-datatable
+            class="bootstrap"
+            [rows]="orderDetails"
+            [loadingIndicator]="loadingIndicator"
+            [columnMode]="ColumnMode.force"
+            [footerHeight]="50"
+            [limit]="10"
+            rowHeight="auto"
+          >
+            <ngx-datatable-column name="Product ID" prop="product_id"></ngx-datatable-column>
+            <ngx-datatable-column name="Product Name" prop="name"></ngx-datatable-column>
+            <ngx-datatable-column name="Date" prop="created_at">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                {{ value | date}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Price" prop="price"></ngx-datatable-column>
+            <ngx-datatable-column name="Picked" prop="picked"></ngx-datatable-column>
+            <ngx-datatable-column name="Total" prop="total"></ngx-datatable-column>
+            <ngx-datatable-column name="Fulfilled" prop="fulfilled"></ngx-datatable-column>
+            <ngx-datatable-column name="Actions" prop="product_id">
+              <!-- Button trigger modal -->
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"et-row="row">
+                      <button type="button" class="btn btn-outline-primary "(click)="openVerticalCenteredModal(verticalCenteredModal,value)">Seller Details</button>
+                    </ng-template>
+             </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<ng-template #verticalCenteredModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel"><i class="feather icon-umbrella btn-icon-prepend"></i> Seller Data</h5>
+    <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <h4 class="tx-15 text-uppercase mb-3">Name</h4>
+    <p class="m-b-5">{{seller.name}}</p>
+    <br>
+    <h4 class="tx-15 text-uppercase mb-3">Email</h4>
+    <p class="m-b-5">{{seller.email}}</p>
+    <br>
+    <h4 class="tx-15 text-uppercase mb-3">Address</h4>
+    <p class="m-b-5">{{seller.address}}</p>
+    <br>
+    <h4 class="tx-15 text-uppercase mb-3">Phone number</h4>
+    <p class="m-b-5">{{seller.phone}}</p>
+    <br>
+    <!-- Active Account Badge -->
+    <button *ngIf="seller.active" type="button" class="btn btn-primary position-relative">
+      Active Account
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+        Active
+      </span>
+    </button>
+    <!-- Inactive Badge -->
+    <!-- <button  *ngIf="!seller.active" type="button" class="btn btn-primary position-relative">
+      Active Account
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+        Active
+      </span>
+    </button> -->
+  </div>
+  <div class="modal-footer">
+    <button type="button" *ngIf="seller.active" class="btn btn-primary" (click)="modal.close('by: save button')">De-activate Seller</button>
+    <button *ngIf="!seller.active" type="button" class="btn btn-primary" (click)="modal.close('by: save button')">Activate Seller</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+  </div>
+</ng-template>
+

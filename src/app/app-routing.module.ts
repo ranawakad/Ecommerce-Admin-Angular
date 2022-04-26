@@ -17,6 +17,14 @@ const routes: Routes = [
         loadChildren: () => import('./views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
+        path: 'orders',
+        loadChildren: () => import('./views/components/orders-management/order.module').then(m => m.OrderModule)
+      },
+      {
+        path: 'sellers',
+        loadChildren: () => import('./views/components/Sellers-Mangement/seller.module').then(m => m.SellerModule)
+      },
+      {
         path: 'apps',
         loadChildren: () => import('./views/pages/apps/apps.module').then(m => m.AppsModule)
       },
@@ -52,11 +60,11 @@ const routes: Routes = [
         path: 'general',
         loadChildren: () => import('./views/pages/general/general.module').then(m => m.GeneralModule)
       },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, 
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       // { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
-  { 
+  {
     path: 'error',
     component: ErrorPageComponent,
     data: {
