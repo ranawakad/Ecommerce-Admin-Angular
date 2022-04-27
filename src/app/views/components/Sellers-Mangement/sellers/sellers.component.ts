@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Seller } from 'src/app/core/models/seller';
 import { SellerService } from 'src/app/core/services/seller.service';
+import { Page } from 'src/app/models/page';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,8 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./sellers.component.scss']
 })
 export class SellersComponent implements OnInit {
-
-  sellers: Seller[] = []
+  page: Page = {} as Page;
   rows = [];
   loadingIndicator = true;
   reorderable = true;
@@ -28,10 +28,25 @@ export class SellersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sellerService.allSellers().subscribe(res=>{
-    this.sellers =  res.data
-      console.log(res.data);
-    })
+    this.setPage({offset: 0});
+    // this.sellerService.allSellers().subscribe(res=>{
+    // this.sellers =  res.data
+    //   console.log(res.data);
+    // })
+  }
+
+  setPage(pageInfo: any) {
+
+    this.page.pageNumber = pageInfo.offset + 1;
+    this.sellerService.allSellers(pageInfo.offset + 1).subscribe((pagedData: any) => {
+
+      this.page.pageNumber = pagedData.data.current_page - 1;
+      this.page.size = pagedData.data.per_page
+      this.page.totalElements = pagedData.data.total
+      this.page.totalPages = pagedData.data.last_page
+      this.rows = pagedData.data.data;
+      console.log(this.rows)
+    });
   }
 
   activeState(value:number){

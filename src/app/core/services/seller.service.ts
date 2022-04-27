@@ -26,7 +26,7 @@ export class SellerService {
       return this.httpClient.get(`${environment.apiAdminURL}/sellers/stateUpdate/${ID}`,this.httpOptions)
      }
 
-     allSellers():Observable<any>{
-      return this.httpClient.get(`${environment.apiAdminURL}/sellers`,this.httpOptions)
+     allSellers(page: number = 1):Observable<any>{
+      return this.httpClient.get(`${environment.apiAdminURL}/sellers?page=${page}`,this.httpOptions)
      }
 }
