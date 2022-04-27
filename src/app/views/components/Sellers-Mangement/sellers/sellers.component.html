@@ -6,12 +6,17 @@
         <div class="table-responsive">
           <ngx-datatable
             class="bootstrap"
-            [rows]="sellers"
+            [rows]="rows"
             [loadingIndicator]="loadingIndicator"
             [columnMode]="ColumnMode.force"
             [footerHeight]="50"
             [limit]="10"
             rowHeight="auto"
+            [externalPaging]="true"
+            [count]="page.totalElements"
+            [offset]="page.pageNumber"
+            [limit]="page.size"
+            (page)="setPage($event)"
           >
             <ngx-datatable-column name="Seller ID" prop="id"></ngx-datatable-column>
             <ngx-datatable-column name="Seller Name" prop="name"></ngx-datatable-column>

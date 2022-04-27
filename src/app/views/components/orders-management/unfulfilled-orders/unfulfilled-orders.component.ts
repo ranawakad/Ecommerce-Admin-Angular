@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Order } from 'src/app/core/models/order';
 import { OrderService } from 'src/app/core/services/order.service';
+import { Page } from 'src/app/models/page';
 
 
 @Component({
@@ -10,8 +11,7 @@ import { OrderService } from 'src/app/core/services/order.service';
   styleUrls: ['./unfulfilled-orders.component.scss']
 })
 export class UnfulfilledOrdersComponent implements OnInit {
-
-  orders: Order[] = []
+  page: Page = {} as Page;
   rows = [];
   loadingIndicator = true;
   reorderable = true;
@@ -20,16 +20,26 @@ export class UnfulfilledOrdersComponent implements OnInit {
   constructor(
     private orderService:OrderService
   ) {
-
+    this.page.pageNumber = 1;
+    this.page.size = 3
   }
 
   ngOnInit(): void {
-    this.orderService.unfulfilled().subscribe(res=>{
+    this.setPage({offset: 0});
+  }
 
-    this.orders =  Object.values(res.data)
+  setPage(pageInfo: any) {
 
-      console.log( Object.values(res.data));
-    })
+    this.page.pageNumber = pageInfo.offset + 1;
+    this.orderService.unfulfilled(pageInfo.offset + 1).subscribe((pagedData: any) => {
+
+      this.page.pageNumber = pagedData.data.current_page - 1;
+      this.page.size = pagedData.data.per_page
+      this.page.totalElements = pagedData.data.total
+      this.page.totalPages = pagedData.data.last_page
+      this.rows = pagedData.data.data;
+      console.log(this.rows)
+    });
   }
 
   setFulfilled(value:number){
