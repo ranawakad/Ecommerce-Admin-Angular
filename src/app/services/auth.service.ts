@@ -15,11 +15,11 @@ export class AuthService {
 
   login(credentails:Credentials)
   {
-    return this.http.post(`${environment.apiURL}/login`,credentails);
+    return this.http.post(`${environment.apiLogin}/login`,credentails);
   }
   logout()
   {
-    return this.http.get(`${environment.apiURL}`)
+    return this.http.get(`${environment.apiLogin}`)
   }
   get getToken()
   {
