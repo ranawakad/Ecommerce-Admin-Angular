@@ -59,7 +59,7 @@ export class AllAdminsComponent implements OnInit {
         this.swal.icon='success'
         this.router.navigate(['/admins']) 
         this.swal.fire()
-        
+        this.setPage({offset:0})
       },
 
       err=>{
