@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: '',
     component: BaseComponent,
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
     children: [
 
       {
@@ -21,6 +21,7 @@ const routes: Routes = [
         loadChildren: () => import('./views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
+
         path: 'products',
         loadChildren: () => import('./components/products/products.module').then(m => m.ProductsModule)
       },
@@ -31,6 +32,24 @@ const routes: Routes = [
       {
         path: 'city',
         loadChildren: () => import('./components/locations/cities/cities.module').then(m => m.CitiesModule)
+      },
+        
+        path: 'roles',
+        loadChildren: () => import('./components/roles/role.module').then(m => m.RoleModule)
+      },
+      {
+        path: 'admins',
+        loadChildren: () => import('./components/admins/admin.module').then(m => m.AdminModule)
+      },
+      
+
+      {
+        path: 'orders',
+        loadChildren: () => import('./views/components/orders-management/order.module').then(m => m.OrderModule)
+      },
+      {
+        path: 'sellers',
+        loadChildren: () => import('./views/components/Sellers-Mangement/seller.module').then(m => m.SellerModule)
       },
       {
         path: 'apps',
@@ -68,7 +87,23 @@ const routes: Routes = [
         path: 'general',
         loadChildren: () => import('./views/pages/general/general.module').then(m => m.GeneralModule)
       },
+        
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+
+
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, 
+      
+      {
+        path: 'customers',
+        loadChildren: () => import('src/app/components/customers/customers.module').then(m => m.CustomersModule)
+      },
+      {
+        path: 'categories',
+        loadChildren: () => import('src/app/components/category/category.module').then(m => m.CategoryModule)
+      },
+      
+      
+
       // { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },

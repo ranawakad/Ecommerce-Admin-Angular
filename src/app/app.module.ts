@@ -11,21 +11,25 @@ import { AppComponent } from './app.component';
 import { ErrorPageComponent } from './views/pages/error-page/error-page.component';
 
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ErrorPageComponent,
-    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SweetAlert2Module.forRoot(),
     HttpClientModule,
-  
   ],
   providers: [
     AuthGuard,

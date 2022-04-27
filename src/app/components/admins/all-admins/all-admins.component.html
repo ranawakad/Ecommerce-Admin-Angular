@@ -1,0 +1,69 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink=".">Admins</a></li>
+        <li class="breadcrumb-item active" aria-current="page">All</li>
+    </ol>
+</nav>
+
+
+<div class="row">
+    <div class="col-md-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Admin List</h6>
+                <div class="table-responsive">
+                    <ngx-datatable class="bootstrap  expandable" 
+                    [rows]="rows" 
+                    [loadingIndicator]="loadingIndicator"
+                    [columnMode]="ColumnMode.force" 
+                    [footerHeight]="50" 
+                    rowHeight="auto"
+                    [externalPaging]="true"
+                    [count]="page.totalElements"
+                    [offset]="page.pageNumber"
+                    [limit]="page.size"
+                    [selected]="selected"
+                    [selectionType]="SelectionType.single"
+                    (page)="setPage($event)"
+                    (select)="select($event)"
+                    >
+                        <ngx-datatable-column name="Id"></ngx-datatable-column>
+                        <ngx-datatable-column name="Name"></ngx-datatable-column>
+                        <ngx-datatable-column name="Email"></ngx-datatable-column>
+                        <ngx-datatable-column name="Roles" prop="roles">
+                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                                let-row="row">
+                                <ng-template ngFor let-obj [ngForOf]="value">
+                                    <strong>{{ obj.name }} </strong>
+                                    <br>
+                                </ng-template>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Name"></ngx-datatable-column>
+                        <ngx-datatable-column name="Controlls" prop="id">
+                            <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                                let-row="row">
+                                <button type="button" (click)="update(value)" class="btn btn-outline-success me-3">
+                                    Update 
+                                </button>
+                                <button
+                                [swal]="{ title: 'Are You Sure for delete this Admin', showDenyButton: true, denyButtonText: 'Don\'t save', showCancelButton: true }"
+                                 (confirm)="deleteRole(value)"
+                                 type="button" class="btn btn-outline-danger">
+                                    Delete 
+                                </button>
+                            </ng-template>
+                        </ngx-datatable-column>
+                    </ngx-datatable>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<swal
+  #deleteSwal
+ title=""
+ icon="error"
+>
+</swal>

@@ -1,0 +1,164 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/roles/all">Roles</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create</li>
+    </ol>
+</nav>
+<div class="d-flex justify-content-center mt-5 h-100">
+    <div class="align-middle w-50 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Create New Role</h6>
+
+                <aw-wizard #wizardForm>
+
+                    <aw-wizard-step stepTitle="Role Name">
+                        <form (ngSubmit)="form1Submit()" [formGroup]="validationForm1">
+                                
+                            <div class="row mb-3">
+                                <label for="name" class="col-sm-3 col-form-label">Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="name" formControlName="name"
+                                        [ngClass]="{'is-invalid': (isForm1Submitted && form1.name?.errors)||(errors?.name)}"
+                                        placeholder="Name">
+                                    <div *ngIf="isForm1Submitted && form1.name.errors" class="invalid-feedback">
+                                        Required
+                                    </div>
+                                    <div *ngIf="errors?.name" class="invalid-feedback">
+                                        {{errors?.name}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="email" class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="email" formControlName="email"
+                                        [ngClass]="{'is-invalid': (isForm1Submitted && form1.email?.errors)||errors?.email}"
+                                        placeholder="Email">
+                                    <div *ngIf="isForm1Submitted && form1.email?.errors" class="invalid-feedback">
+                                        Required
+                                    </div>
+                                    <div *ngIf="errors?.email" class="invalid-feedback">
+                                        {{errors?.email}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="password" class="col-sm-3 col-form-label">Password</label>
+                                <div class="col-sm-9">
+                                    <input type="password" class="form-control" id="password" formControlName="password"
+                                        [ngClass]="{'is-invalid': (isForm1Submitted && form1.password?.errors)||errors?.password}"
+                                        placeholder="Password">
+                                    <div *ngIf="isForm1Submitted && form1.password?.errors" class="invalid-feedback">
+                                        Required
+                                    </div>
+                                    <div *ngIf="errors?.password" class="invalid-feedback">
+                                        {{errors?.password}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="phone" class="col-sm-3 col-form-label">Phone Number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="phone" formControlName="phone"
+                                        [ngClass]="{'is-invalid': (isForm1Submitted && form1.phone?.errors)||errors?.phone}"
+                                        placeholder="Phone Number">
+                                    <div *ngIf="isForm1Submitted && form1.phone.errors" class="invalid-feedback">
+                                        Required
+                                    </div>
+                                    <div *ngIf="errors?.phone" class="invalid-feedback">
+                                        {{errors?.phone}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="Governate" class="col-sm-3 col-form-label">Governate</label>
+                                <div class="col-sm-9">
+                                    <ng-select #select class="form-controller" (change)="setCities($event)"
+                                        [items]="governates" [multiple]=false bindLabel="name" [selectableGroup]="true"
+                                        [selectableGroupAsModel]="false" [closeOnSelect]="true" bindValue="id"
+                                        placeholder="Governate">
+                                    </ng-select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="permissins" class="col-sm-3 col-form-label">City</label>
+                                <div class="col-sm-9">
+                                    <ng-select #select class="form-controller" [items]="cities" [multiple]=false
+                                        bindLabel="name" [selectableGroup]="true" [selectableGroupAsModel]="false"
+                                        [closeOnSelect]="true" bindValue="id" formControlName="city_id"
+                                        [ngClass]="{'is-invalid': isForm1Submitted && form1.city_id.errors?.required}"
+                                        placeholder="City">
+                                    </ng-select>
+                                    <div *ngIf="isForm1Submitted && form1.city_id.errors" class="invalid-feedback">
+                                        Required
+                                    </div>
+                                    <div *ngIf="errors?.city_id" class="invalid-feedback">
+                                        {{errors?.phone}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="address" class="col-sm-3 col-form-label">Address</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="address" formControlName="address"
+                                        [ngClass]="{'is-invalid': (isForm1Submitted && form1.address?.errors)||errors?.address}"
+                                        placeholder="Address">
+                                    <div *ngIf="isForm1Submitted && form1.address.errors" class="invalid-feedback">
+                                        Required
+                                    </div>
+                                    <div *ngIf="errors?.address" class="invalid-feedback">
+                                        {{errors?.address}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center mt-2">
+                                <button class="btn btn-primary" type="submit">Continue</button>
+                            </div>
+                        </form>
+                    </aw-wizard-step>
+
+                    <aw-wizard-step stepTitle="Assign Roles">
+                        <form (ngSubmit)="form2Submit()" [formGroup]="validationForm2">
+                            <div class="row mb-3">
+                                <label for="permissins" class="col-sm-3 col-form-label">Roles</label>
+                                <div class="col-sm-9">
+                                    <ng-select #select class="form-controller" [items]="roles" [multiple]=true
+                                        bindLabel="name" [selectableGroup]="true" [selectableGroupAsModel]="false"
+                                        [closeOnSelect]="false" bindValue="id" formControlName="roles"
+                                        [ngClass]="{'is-invalid': isForm2Submitted && form2.roles.errors?.required}"
+                                        [hideSelected]="true">
+                                    </ng-select>
+                                    <div *ngIf="isForm2Submitted && form2.roles.errors" class="invalid-feedback">
+                                        Required
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center mt-2">
+                                <button class="btn btn-secondary me-2" type="button" awPreviousStep>Back</button>
+                                <button class="btn btn-primary" type="submit">Continue</button>
+                            </div>
+                        </form>
+                    </aw-wizard-step>
+                    <aw-wizard-step stepTitle="Save">
+                        <div class="text-center">
+                            <i data-feather="check-circle" appFeatherIcon class="text-success mt-4 mb-2 icon-xxl"></i>
+                            <h3 class="text-muted mb-3">{{form1.name.value}} </h3>
+                            <p class="w-75 mx-auto mb-4 text-muted">
+                                Are you sure for save this Admin !
+                            </p>
+                        </div>
+                        <div class="d-flex justify-content-center mt-2">
+                            <button class="btn btn-secondary me-2" type="button" awPreviousStep>Back</button>
+                            <button class="btn btn-success" type="button" (click)="finishFunction()">Finish</button>
+                        </div>
+                    </aw-wizard-step>
+
+                </aw-wizard>
+
+            </div>
+        </div>
+    </div>
+</div>
+<swal #addeSwal title="Role has been saved" text="" icon="success">
+</swal>

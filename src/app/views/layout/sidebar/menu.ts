@@ -22,10 +22,39 @@ export const MENU: MenuItem[] = [
     label: 'details',
     link: '/products/2'
   },
-
-
+  
   {
     label: 'Governorates',
+
+    label: 'Orders Management',
+    icon: 'truck',
+    subItems: [
+      {
+        label: 'Processing Orders',
+        link: '/orders/processing',
+      },
+      {
+        label: 'Picked Orders',
+        link: '/orders/picked',
+      },
+      {
+        label: 'On-way Orders',
+        link: '/orders/onway',
+      }
+    ]
+  },
+  {
+    label: 'Sellers Management',
+    icon: 'slack',
+     subItems: [
+      {
+        label: 'Listing Sellers',
+        link: '/sellers/listing',
+      },
+    ]
+  },
+  {
+    label: 'Governates',
     icon: 'home',
     subItems: [
       {
@@ -48,7 +77,7 @@ export const MENU: MenuItem[] = [
       },
     ]
   },
-  {
+    {
     label: 'Admins',
     icon: 'home',
     subItems: [
@@ -59,12 +88,40 @@ export const MENU: MenuItem[] = [
       {
         label: 'Create',
         link: '/admins/create'
+
       },
     ]
   },
   {
+
+    label: 'Customers',
+    icon: 'home',
+    subItems: [
+      {
+        label: 'All',
+        link: '/customers',
+      }
+    ]
+  },
+  {
+    label: 'Categories',
+    icon: 'home',
+    subItems: [
+      {
+        label: 'All',
+        link: '/categories/all',
+      },
+      {
+        label: 'Create',
+        link: '/categories/create',
+      }
+    ]
+  },
+  {
+
     label: 'Governates',
     isTitle: true,
+
   },
   {
     label: 'Dashboard',
@@ -72,6 +129,7 @@ export const MENU: MenuItem[] = [
     link: '/dashboard'
   },
   {
+
     label: 'Web Apps',
     isTitle: true
   },

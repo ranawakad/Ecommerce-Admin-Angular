@@ -1,0 +1,80 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink=".">Categories</a></li>
+      <li class="breadcrumb-item active" aria-current="page">All</li>
+    </ol>
+  </nav>
+  
+  <div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Categories Management</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12 stretch-card">
+      <div class="card">
+        <div class="card-body">
+  
+          <table class="table table-bordered table-hover mb-0 text-nowrap">
+            <thead>
+            <tr>
+              <th class="text-center text-uppercase"></th>
+              <th class="text-center text-uppercase">Category</th>
+              <th class="text-center text-uppercase">Description</th>
+              <th class="text-center text-uppercase">Edit</th>
+              <th class="text-center text-uppercase">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+  
+            <ng-container
+              *ngFor="let category of categories | paginate: {itemsPerPage: itemsPerPage,currentPage: page,totalItems: totalItems} ; trackBy:categoryById">
+              <tr>
+                <td>
+                  <div><img src="{{imageURL}}/categories/{{category.image}}"
+                            onerror="this.src='/assets/images/others/placeholder.jpg'" alt="img">
+                  </div>
+                </td>
+                <td class="text-center text-lg text-medium">{{category.name}}</td>
+                <td class="text-center text-lg text-medium">{{category.description}}</td>
+                <td class="text-center">
+                    <button class="btn btn-warning " (click)="openVerticalCenteredModal(deleteConfirm)">Edit</button>
+                  </td>
+                <td class="text-center">
+                  <button class="btn btn-danger " (click)="openVerticalCenteredModal(deleteConfirm)">DELETE</button>
+                </td>
+  
+                <!-- Modal -->
+                <ng-template #deleteConfirm let-modal>
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                      <button type="button" class="btn-close" (click)="modal.close({confirm:false})"
+                              aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body"><p>Are you sure ?</p></div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" (click)="modal.close({confirm:true,id:category.id})">CONFIRM</button>
+                      <button type="button" class="btn btn-secondary" (click)="modal.close({confirm:false})">Close</button>
+                    </div>
+                  </ng-template>
+                </tr>
+              </ng-container>
+  
+            </tbody>
+          </table>
+  
+  
+          <!--suppress HtmlUnknownTag -->
+          <pagination-controls
+            class="pagination mt-3"
+            (pageChange)="getPage(page = $event)"
+          ></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>

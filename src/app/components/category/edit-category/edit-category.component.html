@@ -1,0 +1,78 @@
+<nav class="page-breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/categories/all">Categories</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create Category</li>
+    </ol>
+</nav>
+
+
+<div class="d-flex justify-content-center mt-5 h-100">
+    <div class="align-middle w-50 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Create New Category</h6>
+                <form (ngSubmit)="onSubmit()" [formGroup]="formData">
+                    <div class="row mb-3">
+                        <label for="name" class="col-sm-3 col-form-label">Name</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="name" formControlName="name"
+                                [ngClass]="{'is-invalid': (isFormSubmitted && form.name?.errors)||errors?.name}"
+                                placeholder="Name" >
+                            <div *ngIf="isFormSubmitted && form.name.errors?.required" class="invalid-feedback">
+                                Required
+                            </div>
+                            <div *ngIf="errors?.name" class="invalid-feedback">
+                                {{errors?.name}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="description" class="col-sm-3 col-form-label">Description</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="description" rows="5" formControlName="description"
+                            [ngClass]="{'is-invalid': (isFormSubmitted && form.description?.errors)||errors?.name}"
+                                placeholder="Description" >
+                            </textarea>
+                            <div *ngIf="isFormSubmitted && form.description.errors?.required" class="invalid-feedback">
+                                Required
+                            </div>
+                            <div *ngIf="errors?.description" class="invalid-feedback">
+                                {{errors?.description}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label  class="col-sm-3 col-form-label">Image</label>
+                        <div class="col-sm-9" for="image">
+                            <div class="position-relative">
+                                <img [src]="url" title="Profile Picture" height="150px" width="150px"/>
+                                <label for="image" class="col-sm-3  inline-block  btn-outline border p-2 ms-1 rounded
+                                position-absolute bottom-0 start-35 label-pointer">
+                                    <i data-feather="upload" class="me-1 align-text-bottom" appFeatherIcon></i> Upload
+                                </label>
+                            </div>
+                            <input type="file" class="form-control" id="image" formControlName="image"
+                                style="display:none" accept="image/*" (change)="onSelect($event)"
+                                [ngClass]="{'is-invalid': (isFormSubmitted && form.image?.errors)||errors?.image}"
+                                placeholder="Image" >
+                            <div *ngIf="isFormSubmitted && form.image.errors?.required" class="invalid-feedback">
+                                Required
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-5">
+                        <button class="btn btn-primary w-25" type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<swal
+  #swal
+   title="" 
+   text=""
+   icon="success" 
+  >
+</swal>
