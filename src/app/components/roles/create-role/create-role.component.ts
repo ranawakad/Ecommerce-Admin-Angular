@@ -36,20 +36,7 @@ export class CreateRoleComponent implements OnInit {
     this.role.getAllPermissions().subscribe(
       (res:any)=>this.permissions=res
     )
-    this.activatedRoute.paramMap.subscribe(paramMap=>{
-
-      let id=paramMap.get('id')?Number(this.activatedRoute.snapshot.paramMap.get('id')) : 0
-      if(id)
-      {
-        this.role.getRole(id).subscribe(
-          (res:any)=>{this.editRole=res.data
-          }
-          ,
-          err=>this.router.navigate(['/error/404'])
-        )
-      }
-      
-    })
+   
       this.validationForm1 = this.formBuilder.group({
         roleName : ['', Validators.required],
       });
@@ -57,6 +44,21 @@ export class CreateRoleComponent implements OnInit {
         permissins : ['', [Validators.required]],
         
       });
+      this.activatedRoute.paramMap.subscribe(paramMap=>{
+
+        let id=paramMap.get('id')?Number(this.activatedRoute.snapshot.paramMap.get('id')) : 0
+        if(id)
+        {
+          this.role.getRole(id).subscribe(
+            (res:any)=>{this.editRole=res.data
+              this.validationForm1.controls['roleName'].setValue(res.data.name)
+            }
+            ,
+            err=>this.router.navigate(['/error/404'])
+          )
+        }
+        
+      })
   
       this.isForm1Submitted = false;
       this.isForm2Submitted = false;

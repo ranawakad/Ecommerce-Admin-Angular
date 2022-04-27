@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
 import { Page } from 'src/app/models/page';
@@ -61,7 +61,7 @@ export class AllRolesComponent implements OnInit {
         this.swal.icon='success'
         this.route.navigate(['/roles']) 
         this.swal.fire()
-        
+        this.setPage({offset:0})
       },
 
       err=>{

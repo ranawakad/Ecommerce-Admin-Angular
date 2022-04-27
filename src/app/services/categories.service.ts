@@ -16,11 +16,14 @@ export class CategoriesService {
   }
 
   getCategory(id: number): Observable<any> {
-    return this.httpClient.get(`${environment.apiURL}/categories/${id}`)
+    return this.httpClient.get(`${environment.apiURL}/category/${id}`)
   }
 
   updateCategory(id: number, data: any): Observable<any> {
-    return this.httpClient.put(`${environment.apiURL}/categories/${id}`, data)
+    return this.httpClient.post(`${environment.apiURL}/category/${id}`,data)
+  }
+  addCategory( data: any): Observable<any> {
+    return this.httpClient.post(`${environment.apiURL}/category`, data)
   }
 
   deleteCategory(id: number): Observable<any> {

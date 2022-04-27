@@ -99,6 +99,10 @@ export const MENU: MenuItem[] = [
       {
         label: 'All',
         link: '/categories/all',
+      },
+      {
+        label: 'Create',
+        link: '/categories/create',
       }
     ]
   },
