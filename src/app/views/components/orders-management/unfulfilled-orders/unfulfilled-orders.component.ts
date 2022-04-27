@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ColumnMode } from '@swimlane/ngx-datatable';
-import { Order } from 'src/app/core/models/order';
 import { OrderService } from 'src/app/core/services/order.service';
 import { Page } from 'src/app/models/page';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -17,21 +18,25 @@ export class UnfulfilledOrdersComponent implements OnInit {
   reorderable = true;
   ColumnMode = ColumnMode;
 
+  sellerID :number = 0
   constructor(
-    private orderService:OrderService
+    private orderService:OrderService,
+    private activatedRoute:ActivatedRoute
   ) {
     this.page.pageNumber = 1;
     this.page.size = 3
   }
 
   ngOnInit(): void {
-    this.setPage({offset: 0});
-  }
+    this.activatedRoute.paramMap.subscribe((paramMap)=>{
+      this.sellerID = (paramMap.get('sellerID'))?Number(this.activatedRoute.snapshot.paramMap.get('sellerID')):0;
+      this.setPage({offset: 0});
+    });  }
 
   setPage(pageInfo: any) {
 
     this.page.pageNumber = pageInfo.offset + 1;
-    this.orderService.unfulfilled(pageInfo.offset + 1).subscribe((pagedData: any) => {
+    this.orderService.unfulfilled(this.sellerID,pageInfo.offset + 1).subscribe((pagedData: any) => {
 
       this.page.pageNumber = pagedData.data.current_page - 1;
       this.page.size = pagedData.data.per_page
@@ -44,6 +49,18 @@ export class UnfulfilledOrdersComponent implements OnInit {
 
   setFulfilled(value:number){
 
+    this.orderService.setFulfilled(value).subscribe(res=>{
+      console.log(res.message);
+      Swal.fire({
+        toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, timerProgressBar: true, title: res.message, icon: 'success'
+      })
+    },err=>{
+      Swal.fire({
+        toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, timerProgressBar: true, title: err.message, icon: 'error'
+      })
+    });
+
+    this.setPage({offset: 0});
     console.log(value);
   }
 }
