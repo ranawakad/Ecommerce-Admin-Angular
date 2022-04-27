@@ -10,25 +10,8 @@ import {GovernoratesService} from "../../../../services/governorates.service";
   styleUrls: ['./edit-city.component.scss']
 })
 export class EditCityComponent implements OnInit {
-  heroForm:FormGroup;
-  constructor(private router: Router,
-
-              private fb:FormBuilder,
-              private governorateService:GovernoratesService)
-  {
-
-  }
   ngOnInit(): void {
-    this.heroForm = new FormGroup({
-      name: new FormControl(this.heroForm, [
-        Validators.required,
-        Validators.minLength(4),
-      ]),
-      alterEgo: new FormControl(this.heroForm.alterEgo),
-    });
-
   }
 
-  get name() { return this.heroForm.get('name'); }
 
 }
