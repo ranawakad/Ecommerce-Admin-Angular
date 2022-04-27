@@ -1,0 +1,124 @@
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink=".">Products</a></li>
+    <li class="breadcrumb-item active" aria-current="page">All</li>
+  </ol>
+</nav>
+
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Products Management</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+
+        <table class="table table-bordered table-hover mb-0 text-nowrap">
+          <thead>
+          <tr>
+            <th class="text-center text-uppercase"></th>
+            <th class="text-center text-uppercase">Product</th>
+            <th class="text-center text-uppercase">Quantity</th>
+            <th class="text-center text-uppercase">available</th>
+            <th class="text-center text-uppercase">original price</th>
+            <th class="text-center text-uppercase">discount</th>
+            <th class="text-center text-uppercase">sale price</th>
+            <th class="text-center text-uppercase">Control</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <ng-container
+            *ngFor="let product of products | paginate: {itemsPerPage: itemsPerPage,currentPage: page,totalItems: totalItems} ; trackBy:productById">
+            <tr>
+              <td>
+                <div><img src="{{imageURL}}/products/{{product.image}}"
+                          onerror="this.src='/assets/images/others/placeholder.jpg'" alt="img">
+                </div>
+              </td>
+              <td>
+                <div>
+                  <div class="media-body">
+                    <div class="card-item-desc">
+                      <h5 class="font-weight-bold text-uppercase">{{product.name}}</h5>
+                      <dl class="card-item-desc-1 mt-2">
+                        <dt>Category:</dt>
+                        <dd>{{product.category.name}}</dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center text-lg text-medium">{{product.quantity}}</td>
+              <td class="text-center text-lg text-medium">
+                <p *ngIf="product.available;else inactive" class="badge bg-success">Active</p>
+                <ng-template #inactive><p class="badge bg-danger">Inactive</p></ng-template>
+              </td>
+              <td class="text-center text-lg text-medium">{{product.price}} EGP</td>
+              <td class="text-center text-lg text-medium">{{product.discount * 100}}%</td>
+              <td class="text-center text-lg text-medium">{{(product.salePrice).toFixed(2)}} EGP</td>
+              <td class="text-center">
+                <!--                <a routerLink="{{product.id}}/edit" class="btn btn-primary px-2">DETAILS</a>-->
+                <button class="btn btn-primary mx-1" (click)="openLgModal(details)">DETAILS</button>
+                <button class="btn btn-danger" (click)="openVerticalCenteredModal(deleteConfirm)">DELETE</button>
+
+              </td>
+
+              <!-- Modal -->
+              <ng-template #details let-modal>
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Product Details</h5>
+                  <button type="button" class="btn-close" (click)="modal.close({confirm:false})"
+                          aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <h2>{{product.name}}</h2>
+                  <img class="card-img" [src]="imageURL+'/products/'+product.image" [alt]="product.name"
+                       onerror="this.src='/assets/images/others/placeholder.jpg'">
+                  <p><b>Description: </b>{{product.description}}</p>
+                  <p><b>Product #: </b>{{product.id}}</p>
+                  <p><b>Total Sold Items: </b>{{product.soldCount}}</p>
+                  <p><b>Seller #: </b>{{product.seller_id}}</p>
+                </div>
+                <div class="modal-footer">
+                  <a class="btn btn-primary" (click)="modal.close()" routerLink="{{product.id}}">Item Orders</a>
+                  <button type="button" class="btn btn-dark" (click)="modal.close()">Close</button>
+                </div>
+              </ng-template>
+
+              <ng-template #deleteConfirm let-modal>
+                <div class="modal-header">
+                  <h5 class="modal-title">Confirm Delete</h5>
+                  <button type="button" class="btn-close" (click)="modal.close({confirm:false})"
+                          aria-label="Close"></button>
+                </div>
+                <div class="modal-body"><p>Are you sure ?</p></div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" (click)="modal.close({confirm:true,id:product.id})">CONFIRM</button>
+                  <button type="button" class="btn btn-secondary" (click)="modal.close({confirm:false})">Close</button>
+                </div>
+              </ng-template>
+            </tr>
+          </ng-container>
+
+          </tbody>
+        </table>
+
+
+        <!--suppress HtmlUnknownTag -->
+        <pagination-controls
+          class="pagination mt-3"
+          (pageChange)="getPage(page = $event)"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>
+

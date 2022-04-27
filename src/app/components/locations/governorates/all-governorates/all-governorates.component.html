@@ -1,0 +1,98 @@
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink=".">Governorates</a></li>
+    <li class="breadcrumb-item active" aria-current="page">All</li>
+  </ol>
+</nav>
+
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Governorates Management</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class=" text-end">
+          <a class="btn btn-primary mb-4" routerLink="create"><i data-feather="edit" appFeatherIcon></i> Create New
+            Governorate</a>
+        </div>
+        <table class="table table-bordered table-hover mb-0 text-nowrap">
+          <thead>
+          <tr>
+            <th class="text-center text-uppercase">#</th>
+            <th class="text-center text-uppercase">Name</th>
+            <th class="text-center text-uppercase">Cities</th>
+            <th class="text-center text-uppercase">Control</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <ng-container
+            *ngFor="let governorate of governorates;let index=index; trackBy:trackById">
+            <tr>
+              <td class="text-center text-lg text-medium">{{index + 1}}</td>
+              <td><h5 class="font-weight-bold text-uppercase">{{governorate.name}}</h5></td>
+              <td class="text-center">
+                <button class="btn btn-primary" (click)="openLgModal(cities)">CITIES</button>
+              </td>
+              <td class="text-center" colspan="2">
+                <a class="btn btn-success btn-icon-text mx-2" routerLink="{{governorate.id}}/edit">
+                  <i class="btn-icon-prepend feather" data-feather="edit" appFeatherIcon></i>Edit
+                </a>
+                <button class="btn btn-danger btn-icon-text" (click)="openVerticalCenteredModal(deleteGovernorateConfirm)">
+                  <i class="btn-icon-prepend feather" data-feather="trash-2" appFeatherIcon></i>Delete
+                </button>
+              </td>
+              <!-- Delete governorate confirm-->
+              <ng-template #deleteGovernorateConfirm let-modal>
+                <div class="modal-header">
+                  <h5 class="modal-title">Confirm Delete</h5>
+                  <button type="button" class="btn-close" (click)="modal.close({confirm:false})"></button>
+                </div>
+                <div class="modal-body"><p>Are you sure ?</p></div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" (click)="modal.close({confirm:true,id:governorate.id})">
+                    CONFIRM
+                  </button>
+                  <button type="button" class="btn btn-secondary" (click)="modal.close({confirm:false})">Close</button>
+                </div>
+              </ng-template>
+              <!--end delete governorate confirm-->
+
+              <!--start edit governorate modal-->
+              <!-- End edit modal-->
+
+              <!--  Cities Modal -->
+              <ng-template #cities let-modal>
+                <div class="modal-header">
+                  <h5 class="modal-title">{{governorate.name}}/ Cities</h5>
+                  <button type="button" class="btn-close" (click)="modal.close()"></button>
+                </div>
+                <div class="modal-body">
+                  <h2>{{governorate.name}}</h2>
+                  <app-cities (removeCity)="removeCity(index,$event)" [cities]="governorate.cities"></app-cities>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" (click)="modal.close()">Close</button>
+                </div>
+              </ng-template>
+
+            </tr>
+          </ng-container>
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+

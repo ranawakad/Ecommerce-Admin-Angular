@@ -15,12 +15,25 @@ const routes: Routes = [
     component: BaseComponent,
     //canActivate: [AuthGuard],
     children: [
-      
+
       {
         path: 'dashboard',
         loadChildren: () => import('./views/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
+
+        path: 'products',
+        loadChildren: () => import('./components/products/products.module').then(m => m.ProductsModule)
+      },
+      {
+        path: 'governorates',
+        loadChildren: () => import('./components/locations/governorates/governorates.module').then(m => m.GovernoratesModule)
+      },
+      {
+        path: 'city',
+        loadChildren: () => import('./components/locations/cities/cities.module').then(m => m.CitiesModule)
+      },
+        
         path: 'roles',
         loadChildren: () => import('./components/roles/role.module').then(m => m.RoleModule)
       },
@@ -29,6 +42,7 @@ const routes: Routes = [
         loadChildren: () => import('./components/admins/admin.module').then(m => m.AdminModule)
       },
       
+
       {
         path: 'orders',
         loadChildren: () => import('./views/components/orders-management/order.module').then(m => m.OrderModule)
@@ -73,6 +87,9 @@ const routes: Routes = [
         path: 'general',
         loadChildren: () => import('./views/pages/general/general.module').then(m => m.GeneralModule)
       },
+        
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+
 
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, 
       

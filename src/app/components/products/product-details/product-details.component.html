@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="container-fluid d-flex justify-content-between">
+          <div class="col-lg-5 ps-0">
+            <p class="mt-1 mb-1"><b>Product Details</b></p>
+            <h4 class="fw-bold text-uppercase mt-2 mb-2">{{product?.name}}</h4>
+            <img class="img-fluid" [src]="imageURL+'/products/'+product.image"
+                 onerror="this.src='assets/images/others/placeholder.jpg'" alt="">
+          </div>
+          <div class="col-lg-6 pe-0">
+
+            <h5 class="mt-6 text-muted text-uppercase">Sold Items</h5>
+            <h4 class="fw-normal">{{product?.soldCount}}</h4>
+            <h5 class="mt-3 mb-2 text-muted text-uppercase">Description :</h5>
+            <p>{{product?.description}}</p>
+            <h5 class="mt-3 mb-2 text-muted text-uppercase">Current Price :</h5>
+            <p>{{product?.salePrice.toFixed(2)}} EGP</p>
+            <h5 class="mt-3 mb-2 text-muted text-uppercase">Original Price :</h5>
+            <p>{{product?.price.toFixed(2)}} EGP</p>
+            <h5 class="mt-3 mb-2 text-muted text-uppercase">Discount :</h5>
+            <p>{{product?.discount|percent}}</p>
+            <h6 class="mt-3 mb-2 text-muted text-uppercase">Delete</h6>
+            <button class="btn btn-danger px-2" (click)="openVerticalCenteredModal(deleteConfirm)">DELETE</button>
+
+          </div>
+        </div>
+        <div class="container-fluid mt-5 d-flex justify-content-center w-100">
+          <div *ngIf="orderItems.length" class="table-responsive w-100">
+
+            <table class="table table-bordered table-hover mb-0 text-nowrap">
+              <thead>
+              <tr>
+                <th class="text-center text-uppercase">#</th>
+                <th class="text-center text-uppercase">Quantity</th>
+                <th class="text-center text-uppercase">Created</th>
+                <th class="text-center text-uppercase">Original Price</th>
+                <th class="text-center text-uppercase">discount</th>
+                <th class="text-center text-uppercase">Sale price</th>
+                <th class="text-center text-uppercase">Total price</th>
+              </tr>
+              </thead>
+              <tbody>
+
+              <ng-container
+                *ngFor="let orderItem of orderItems | paginate: {itemsPerPage: itemsPerPage,currentPage: page,totalItems: totalItems} ;let index=index; trackBy:orderItemById">
+                <tr>
+                  <td class="text-center text-lg text-medium">{{index + 1}}</td>
+                  <td class="text-center text-lg text-medium">{{orderItem.quantity}}</td>
+                  <td
+                    class="text-center text-lg text-medium">{{orderItem.created_at | date:'EEE, MMMM d, y, h:mm a'}}</td>
+                  <td class="text-center text-lg text-medium">{{orderItem.price}} EGP</td>
+                  <td class="text-center text-lg text-medium">{{orderItem.discount | percent}}%</td>
+                  <td class="text-center text-lg text-medium">{{orderItem.sale_price.toFixed(2)}} EGP</td>
+                  <td class="text-center text-lg text-medium">{{orderItem.total.toFixed(2)}} EGP</td>
+                </tr>
+              </ng-container>
+
+              </tbody>
+            </table>
+            <!--suppress HtmlUnknownTag -->
+            <pagination-controls
+              class="pagination mt-3"
+              (pageChange)="getPage(page = $event)"
+            ></pagination-controls>
+
+          </div>
+
+        <div *ngIf="!orderItems.length" class="container mt-5 d-flex justify-content-center w-100">
+          <p class="text-muted">Not ordered yet</p>
+        </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #deleteConfirm let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+    <button type="button" class="btn-close" (click)="modal.close({confirm:false})"
+            aria-label="Close"></button>
+  </div>
+  <div class="modal-body"><p>Are you sure ?</p></div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.close({confirm:true,id:product.id})">CONFIRM</button>
+    <button type="button" class="btn btn-secondary" (click)="modal.close({confirm:false})">Close</button>
+  </div>
+</ng-template>
