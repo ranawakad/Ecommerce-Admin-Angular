@@ -2,7 +2,7 @@
   <div class="col-md-12 stretch-card">
     <div class="card">
       <div class="card-body">
-        <h6 class="card-title">Fulfilled Orders</h6>
+        <h6 class="card-title">Processing Orders</h6>
         <div class="table-responsive">
           <ngx-datatable
             class="bootstrap"
@@ -18,21 +18,19 @@
             [limit]="page.size"
             (page)="setPage($event)"
           >
-            <ngx-datatable-column name="Item ID" prop="id"></ngx-datatable-column>
+            <ngx-datatable-column name="Order ID" prop="id"></ngx-datatable-column>
             <ngx-datatable-column name="Date" prop="created_at">
               <ng-template let-value="value" ngx-datatable-cell-template>
                 {{ value | date}}
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="Product ID" prop="product_id"></ngx-datatable-column>
-            <ngx-datatable-column name="Product name" prop="name"></ngx-datatable-column>
-            <ngx-datatable-column name="Price" prop="price">
-              <ng-template let-value="value" ngx-datatable-cell-template>
-                {{ value | currency}}
-              </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="Quantity" prop="quantity"></ngx-datatable-column>
-            <ngx-datatable-column name="Picked" prop="picked"></ngx-datatable-column>
+            <ngx-datatable-column name="Shipping company ID" prop="shipping_company_id"></ngx-datatable-column>
+            <ngx-datatable-column name="Status" prop="status"></ngx-datatable-column>
+            <ngx-datatable-column name="Actions" prop="id">
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"et-row="row">
+                      <button type="button" class="btn btn-outline-primary btn-icon-text" (click)='setOnWay(value)'><i class="feather icon-check-square btn-icon-prepend"></i> Set On-way</button>
+                    </ng-template>
+             </ngx-datatable-column>
           </ngx-datatable>
         </div>
       </div>

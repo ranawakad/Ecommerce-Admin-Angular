@@ -15,16 +15,12 @@ export const MENU: MenuItem[] = [
     icon: 'truck',
     subItems: [
       {
-        label: 'Unfulfilled Orders',
-        link: '/orders/unfulfilled',
-      },
-      {
-        label: 'Fulfilled Orders',
-        link: '/orders/fulfilled',
-      },
-      {
         label: 'Processing Orders',
         link: '/orders/processing',
+      },
+      {
+        label: 'Picked Orders',
+        link: '/orders/picked',
       },
       {
         label: 'On-way Orders',
