@@ -44,11 +44,11 @@
                 <button class="btn btn-primary" (click)="openLgModal(cities)">CITIES</button>
               </td>
               <td class="text-center" colspan="2">
-                <a class="btn btn-primary mx-2" routerLink="/{{governorate.id}}/edit">
-                  <i data-feather="edit" appFeatherIcon></i>
+                <a class="btn btn-success btn-icon-text mx-2" routerLink="{{governorate.id}}/edit">
+                  <i class="btn-icon-prepend feather" data-feather="edit" appFeatherIcon></i>Edit
                 </a>
-                <button class="btn btn-danger" (click)="openVerticalCenteredModal(deleteGovernorateConfirm)">
-                  <i data-feather="trash-2" appFeatherIcon></i>
+                <button class="btn btn-danger btn-icon-text" (click)="openVerticalCenteredModal(deleteGovernorateConfirm)">
+                  <i class="btn-icon-prepend feather" data-feather="trash-2" appFeatherIcon></i>Delete
                 </button>
               </td>
               <!-- Delete governorate confirm-->

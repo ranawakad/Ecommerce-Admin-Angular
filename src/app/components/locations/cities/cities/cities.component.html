@@ -14,8 +14,8 @@
         <td class="text-center text-lg text-medium">{{index+1}}</td>
         <td><h5 class="font-weight-bold text-uppercase">{{city.name}}</h5></td>
         <td class="text-center">
-            <a class="btn btn-primary mx-1" routerLink="/city/{{city.id}}/edit"><i data-feather="edit" appFeatherIcon></i></a>
-            <button class="btn btn-danger" (click)="openVerticalCenteredModal(deleteCityConfirm)"><i data-feather="trash-2" appFeatherIcon></i></button>
+            <a class="btn btn-success mx-1" routerLink="/city/{{city.id}}/edit"><i data-feather="edit" appFeatherIcon></i>Edit</a>
+            <button class="btn btn-danger" (click)="openVerticalCenteredModal(deleteCityConfirm)"><i data-feather="trash-2" appFeatherIcon></i>Delete</button>
         </td>
       </tr>
 <!--      Delete City Confirm Modal -->
