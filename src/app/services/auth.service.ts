@@ -16,11 +16,11 @@ export class AuthService {
   login(credentails:Credentials)
   {
 
-    return this.http.post(`${environment.apiLogin}/login`,credentails);
+    return this.http.post(`${environment.apiAdminURL}/login`,credentails);
   }
   logout()
   {
-    return this.http.get(`${environment.apiLogin}`)
+    return this.http.get(`${environment.apiURL}/logout`)
   }
   get getToken()
   {
@@ -28,6 +28,6 @@ export class AuthService {
   }
   get isLogedIn()
   {
-   return localStorage.getItem('adminToken')?true:false
+   return !!localStorage.getItem('adminToken')
   }
 }

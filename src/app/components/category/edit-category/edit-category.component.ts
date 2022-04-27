@@ -46,7 +46,7 @@ export class EditCategoryComponent implements OnInit {
             this.formData.get('image')?.updateValueAndValidity();
             this.formData.get('imageSource')?.updateValueAndValidity();
             console.log(res.data.image)
-            this.url = `${environment.Images}/categories/${res.data.image}`;
+            this.url = `${environment.images}/categories/${res.data.image}`;
           }
           ,
           err => this.router.navigate(['/error/404'])

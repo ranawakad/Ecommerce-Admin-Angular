@@ -6,6 +6,7 @@ import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { WizardComponent as BaseWizardComponent } from 'angular-archwizard';
 import { AdminService } from 'src/app/services/admin.service';
 import { RoleService } from 'src/app/services/role.service';
+import {GovernoratesService} from "../../../services/governorates.service";
 @Component({
   selector: 'app-create-admin',
   templateUrl: './create-admin.component.html',
@@ -31,8 +32,9 @@ export class CreateAdminComponent implements OnInit {
     private role: RoleService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private admin: AdminService) {
-    this.admin.getGovernorates().subscribe(
+    private admin: AdminService,
+    private governoratesService:GovernoratesService) {
+    this.governoratesService.getAllGovernorates().subscribe(
       res => this.governates = res
     )
   }
@@ -84,7 +86,7 @@ export class CreateAdminComponent implements OnInit {
   finishFunction() {
     let data = this.validationForm1.value
     data['roles']=this.form2.roles.value
-    
+
     this.admin.addAdmin(data).subscribe(
       (res: any) => {
         this.router.navigate(['/admins/all'])

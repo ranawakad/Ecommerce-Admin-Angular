@@ -15,7 +15,7 @@ export class CategoriesComponent implements OnInit {
   categories:any;
   itemsPerPage = 30;
   totalItems: any;
-  imageURL = environment.Images
+  imageURL = environment.images
 
   constructor(private categoriesService: CategoriesService,private modalService: NgbModal) {
   }

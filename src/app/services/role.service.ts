@@ -11,30 +11,30 @@ export class RoleService {
   constructor(private http:HttpClient) { }
   getRoles()
   {
-    return this.http.get(`${environment.apiUrlAdmin}/roles`)
+    return this.http.get(`${environment.apiAdminURL}/roles`)
   }
   getAllRoles(pageNumber:number)
   {
-    return this.http.get(`${environment.apiUrlAdmin}/roles?page=${pageNumber}`)
+    return this.http.get(`${environment.apiAdminURL}/roles?page=${pageNumber}`)
   }
   getRole(id:number)
   {
-    return this.http.get(`${environment.apiUrlAdmin}/roles/${id}`)
+    return this.http.get(`${environment.apiAdminURL}/roles/${id}`)
   }
   addRole(role:AddRole)
   {
-    return this.http.post(`${environment.apiUrlAdmin}/roles`,role)
+    return this.http.post(`${environment.apiAdminURL}/roles`,role)
   }
   deleteRole(id:number)
   {
-    return this.http.delete(`${environment.apiUrlAdmin}/roles/${id}`)
+    return this.http.delete(`${environment.apiAdminURL}/roles/${id}`)
   }
   updateRole(id:number,role:AddRole)
   {
-    return this.http.put(`${environment.apiUrlAdmin}/roles/${id}`,role)
+    return this.http.put(`${environment.apiAdminURL}/roles/${id}`,role)
   }
   getAllPermissions()
   {
-    return this.http.get(`${environment.apiUrlAdmin}/permissions`)
+    return this.http.get(`${environment.apiAdminURL}/permissions`)
   }
 }

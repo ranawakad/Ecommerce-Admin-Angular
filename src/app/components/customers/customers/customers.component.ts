@@ -13,7 +13,7 @@ export class CustomersComponent implements OnInit {
   customers:any;
   itemsPerPage = 30;
   totalItems: any;
-  imageURL = environment.Images
+  imageURL = environment.images
 
   constructor(private customersService: CustomersService,private modalService: NgbModal) {
   }
