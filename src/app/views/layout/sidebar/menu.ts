@@ -25,16 +25,12 @@ export const MENU: MenuItem[] = [
 
 
   {
-    label: 'Governates',
+    label: 'Governorates',
     icon: 'home',
     subItems: [
       {
         label: 'All',
-        link: '/covernates/all',
-      },
-      {
-        label: 'Create',
-        link: '/covernates/create'
+        link: '/governorates',
       },
     ]
   },

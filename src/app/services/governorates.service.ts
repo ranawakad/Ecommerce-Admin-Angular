@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import {environment} from "../../environments/environment";
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {environment} from 'src/environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +12,22 @@ export class GovernoratesService {
   }
 
   getAllGovernorates(): Observable<any[]> {
-    return this.httpClient.get<any[]>(`${environment.apiURL}/governorates`)
+    return this.httpClient.get<any>(`${environment.apiURL}/governorate`)
   }
 
-  createGovernorate(governorate: object): Observable<any[]> {
-    return this.httpClient.post<any[]>(`${environment.apiURL}/governorates`, governorate)
+  createGovernorate(governorate: object): Observable<any> {
+    return this.httpClient.post<any>(`${environment.apiURL}/governorate`, governorate)
   }
 
-  getGovernorate(governorateId: number): Observable<any[]> {
-    return this.httpClient.get<any[]>(`${environment.apiURL}/governorates/${governorateId}`)
+  getGovernorate(governorateId: number): Observable<any> {
+    return this.httpClient.get(`${environment.apiURL}/governorate/${governorateId}`)
   }
 
-  updateGovernorate(governorateId: number, city: object): Observable<any[]> {
-    return this.httpClient.put<any[]>(`${environment.apiURL}/governorates/${governorateId}`, city)
+  updateGovernorate(governorateId: number, governorate: object): Observable<any> {
+    return this.httpClient.put<any>(`${environment.apiURL}/governorate/${governorateId}`, governorate)
   }
 
-  deleteGovernorate(governorateId: number): Observable<any[]> {
-    return this.httpClient.delete<any[]>(`${environment.apiURL}/governorates/${governorateId}`)
+  deleteGovernorate(governorateId: number): Observable<any> {
+    return this.httpClient.delete<any>(`${environment.apiURL}/governorate/${governorateId}`)
   }
 }

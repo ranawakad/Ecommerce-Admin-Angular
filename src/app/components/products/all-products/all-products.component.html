@@ -64,10 +64,10 @@
               <td class="text-center text-lg text-medium">{{product.price}} EGP</td>
               <td class="text-center text-lg text-medium">{{product.discount * 100}}%</td>
               <td class="text-center text-lg text-medium">{{(product.salePrice).toFixed(2)}} EGP</td>
-              <td>
+              <td class="text-center">
                 <!--                <a routerLink="{{product.id}}/edit" class="btn btn-primary px-2">DETAILS</a>-->
-                <button class="btn btn-primary px-2" (click)="openLgModal(details)">DETAILS</button>
-                <button class="btn btn-danger px-2" (click)="openVerticalCenteredModal(deleteConfirm)">DELETE</button>
+                <button class="btn btn-primary mx-1" (click)="openLgModal(details)">DETAILS</button>
+                <button class="btn btn-danger" (click)="openVerticalCenteredModal(deleteConfirm)">DELETE</button>
 
               </td>
 
@@ -95,7 +95,7 @@
 
               <ng-template #deleteConfirm let-modal>
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+                  <h5 class="modal-title">Confirm Delete</h5>
                   <button type="button" class="btn-close" (click)="modal.close({confirm:false})"
                           aria-label="Close"></button>
                 </div>

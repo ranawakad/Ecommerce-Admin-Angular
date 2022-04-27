@@ -4,27 +4,31 @@
       <div class="row">
         <div class="col-md-4 pe-md-0">
           <div class="auth-side-wrapper" [ngStyle]="{ 'background-image': 'url(https://via.placeholder.com/219x452)' }">
-
           </div>
         </div>
+
         <div class="col-md-8 ps-md-0">
           <div class="auth-form-wrapper px-4 py-5">
             <a routerLink="." class="nobleui-logo logo-light  d-block mb-2">Noble<span>UI</span></a>
             <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
-            <ngb-alert *ngIf="error" [dismissible]="false" (closed)="error = false" [type]="'danger'">Invalid Email Or Password</ngb-alert>
-            <form  [formGroup]="credentails" (ngSubmit)="formSubmit()"   class="forms-sample">
+            <ngb-alert *ngIf="error" [dismissible]="false" (closed)="error = false" [type]="'danger'">Invalid Email Or
+              Password
+            </ngb-alert>
+            <form [formGroup]="credentails" (ngSubmit)="formSubmit()" class="forms-sample">
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1" placeholder="Email" 
-                [ngClass]="{'is-invalid':isFormSubmitted && form.email.errors}">
+                <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1"
+                       placeholder="Email"
+                       [ngClass]="{'is-invalid':isFormSubmitted && form.email.errors}">
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1" autocomplete="current-password" placeholder="Password" 
-                [ngClass]="{'is-invalid':isFormSubmitted && form.password.errors}">
+                <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1"
+                       autocomplete="current-password" placeholder="Password"
+                       [ngClass]="{'is-invalid':isFormSubmitted && form.password.errors}">
               </div>
               <div>
-                <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0" >Login</button>
+                <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0">Login</button>
                 <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
                   <i class="feather icon-twitter btn-icon-prepend"></i>
                   Login with twitter

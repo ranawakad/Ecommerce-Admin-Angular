@@ -12,7 +12,7 @@ export class ProductsService {
   }
 
   getAllProducts(page: number = 1): Observable<any> {
-    return this.httpClient.get(`${environment.apiURL}/products?page=${page}`)
+    return this.httpClient.get(`${environment.apiURL}/products/all?page=${page}`)
   }
 
   getProductsByCategory(id: number): Observable<any> {

@@ -4,7 +4,6 @@ import {environment} from "src/environments/environment";
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import Swal from "sweetalert2";
 
-
 @Component({
   selector: 'app-all-products',
   templateUrl: './all-products.component.html',
