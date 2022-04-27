@@ -33,7 +33,7 @@ const routes: Routes = [
         path: 'city',
         loadChildren: () => import('./components/locations/cities/cities.module').then(m => m.CitiesModule)
       },
-        
+      {
         path: 'roles',
         loadChildren: () => import('./components/roles/role.module').then(m => m.RoleModule)
       },
@@ -41,7 +41,7 @@ const routes: Routes = [
         path: 'admins',
         loadChildren: () => import('./components/admins/admin.module').then(m => m.AdminModule)
       },
-      
+
 
       {
         path: 'orders',
@@ -87,12 +87,12 @@ const routes: Routes = [
         path: 'general',
         loadChildren: () => import('./views/pages/general/general.module').then(m => m.GeneralModule)
       },
-        
+
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 
 
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, 
-      
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+
       {
         path: 'customers',
         loadChildren: () => import('src/app/components/customers/customers.module').then(m => m.CustomersModule)
@@ -101,8 +101,8 @@ const routes: Routes = [
         path: 'categories',
         loadChildren: () => import('src/app/components/category/category.module').then(m => m.CategoryModule)
       },
-      
-      
+
+
 
       // { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
     ]

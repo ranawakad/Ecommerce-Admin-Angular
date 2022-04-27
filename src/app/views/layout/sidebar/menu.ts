@@ -22,9 +22,8 @@ export const MENU: MenuItem[] = [
     label: 'details',
     link: '/products/2'
   },
-  
+
   {
-    label: 'Governorates',
 
     label: 'Orders Management',
     icon: 'truck',
@@ -54,7 +53,7 @@ export const MENU: MenuItem[] = [
     ]
   },
   {
-    label: 'Governates',
+    label: 'Governorates',
     icon: 'home',
     subItems: [
       {
@@ -117,12 +116,7 @@ export const MENU: MenuItem[] = [
       }
     ]
   },
-  {
 
-    label: 'Governates',
-    isTitle: true,
-
-  },
   {
     label: 'Dashboard',
     icon: 'home',
