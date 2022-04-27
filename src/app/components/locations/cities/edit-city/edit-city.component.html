@@ -1,0 +1,48 @@
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">City</li>
+    <li class="breadcrumb-item active" [innerText]="pageTitle??'Edit'" [attr.aria-current]="pageTitle??'Edit'"></li>
+  </ol>
+</nav>
+
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <h4 class="card-header">City Management</h4>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-2">
+  <div>
+    <form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">City Name</label>
+        <div class="col-sm-9">
+          <input type="text" id="name" class="form-control" formControlName="name" required>
+
+          <!--Angular Form Errors -->
+          <div *ngIf="(cityForm.get('name')?.invalid && cityForm.get('name')?.touched)" class="invalid-feedback">
+            <div *ngIf="cityForm.errors?.name.required">Name is required.</div>
+            <div *ngIf="cityForm.errors?.name.minlength">Name must be at least 4 characters long.</div>
+          </div>
+          <!--Server Errors -->
+          <div *ngFor="let error of errors?.name" class="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <!--Select Dropdown-->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Governorate</label>
+        <div class="col-sm-9">
+          <select class="form-control" formControlName="governorate_id">
+            <option *ngFor="let governorate of governorates" [ngValue]="governorate.id">{{governorate.name}}</option>
+          </select>
+
+        </div>
+      </div>
+      <!--End Select Dropdown-->
+      <button type="submit" class="btn btn-primary" [disabled]="cityForm.invalid">Save</button>
+    </form>
+  </div>
+</div>

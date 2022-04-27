@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnInit, OnDestroy, TemplateRef} from '@angular/core';
 import {ProductsService} from 'src/app/services/products.service';
 import {environment} from "src/environments/environment";
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
   templateUrl: './all-products.component.html',
   styleUrls: ['./all-products.component.scss']
 })
-export class AllProductsComponent implements OnInit {
+export class AllProductsComponent implements OnInit, OnDestroy {
   page = 1;
   products: any;
   itemsPerPage = 30;
@@ -19,8 +19,13 @@ export class AllProductsComponent implements OnInit {
   constructor(private productsService: ProductsService, private modalService: NgbModal) {
   }
 
+
   ngOnInit(): void {
     this.getPage(this.page);
+  }
+
+  ngOnDestroy(): void {
+    this.modalService.dismissAll();
   }
 
   getPage(page: any) {
@@ -73,4 +78,5 @@ export class AllProductsComponent implements OnInit {
   openLgModal(content: TemplateRef<any>) {
     this.modalService.open(content, {size: 'lg', scrollable: true})
   }
+
 }

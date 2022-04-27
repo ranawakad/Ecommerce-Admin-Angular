@@ -26,9 +26,12 @@ const routes: Routes = [
       },
       {
         path: 'governorates',
-        loadChildren: () => import('./components/governorates/governorates.module').then(m => m.GovernoratesModule)
+        loadChildren: () => import('./components/locations/governorates/governorates.module').then(m => m.GovernoratesModule)
       },
-
+      {
+        path: 'city',
+        loadChildren: () => import('./components/locations/cities/cities.module').then(m => m.CitiesModule)
+      },
       {
         path: 'apps',
         loadChildren: () => import('./views/pages/apps/apps.module').then(m => m.AppsModule)

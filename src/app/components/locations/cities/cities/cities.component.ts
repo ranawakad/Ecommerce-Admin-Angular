@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, TemplateRef} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit,OnDestroy, Output, TemplateRef} from '@angular/core';
 import Swal from "sweetalert2";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CitiesService} from "src/app/services/cities.service";
@@ -9,8 +9,9 @@ import {CitiesService} from "src/app/services/cities.service";
   styleUrls: ['./cities.component.scss']
 })
 
-export class CitiesComponent implements OnInit {
-  @Input() governorate:any
+export class CitiesComponent implements OnInit,OnDestroy {
+  @Output() removeCity = new EventEmitter<any>();
+  @Input() cities:any
   constructor(private modalService: NgbModal,private cityService:CitiesService) { }
 
   ngOnInit(): void {
@@ -27,16 +28,17 @@ export class CitiesComponent implements OnInit {
     })
   }
 
-  deleteCity(id: number) {
-    this.cityService.deleteCity(id).subscribe({
+  deleteCity(result:any) {
+    this.cityService.deleteCity(result.id).subscribe({
       next: (res) => {
+        this.removeCity.emit({index:result.index})
         this.sweetalert('success', res.message)
-        this.governorate.cities = this.governorate.cities.filter((element: any) => {
-          return element.id != id;
+        this.cities = this.cities.filter((element: any) => {
+          return element.id != result.id;
         })
       },
-      error: () => {
-        this.sweetalert('error', 'Failed')
+      error: (err) => {
+        this.sweetalert('error', err.error.message)
       }
     })
 
@@ -49,12 +51,16 @@ export class CitiesComponent implements OnInit {
   openVerticalCenteredModal(content: TemplateRef<any>) {
     this.modalService.open(content, {centered: true,scrollable: true}).result.then((result) => {
       if (result.confirm) {
-        this.deleteCity(result.id);
+        this.deleteCity(result);
       }
     });
   }
 
   openLgModal(content: TemplateRef<any>) {
     this.modalService.open(content, {size: 'lg', scrollable: true})
+  }
+
+  ngOnDestroy(): void {
+    this.modalService.dismissAll();
   }
 }

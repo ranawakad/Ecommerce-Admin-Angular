@@ -11,7 +11,7 @@ export class GovernoratesService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAllGovernorates(): Observable<any[]> {
+  getAllGovernorates(): Observable<any> {
     return this.httpClient.get<any>(`${environment.apiURL}/governorate`)
   }
 
