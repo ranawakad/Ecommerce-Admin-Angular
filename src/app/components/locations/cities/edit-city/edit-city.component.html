@@ -13,36 +13,44 @@
   </div>
 </div>
 
-<div class="row mt-2">
-  <div>
-    <form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
-      <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">City Name</label>
-        <div class="col-sm-9">
-          <input type="text" id="name" class="form-control" formControlName="name" required>
+<div class="d-flex justify-content-center mt-5 h-100">
+  <div class="align-middle w-50 grid-margin">
+    <div class="row mt-2">
+      <div>
+        <form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">City Name</label>
+            <div class="col-sm-9">
+              <input type="text" id="name" class="form-control" formControlName="name" required>
 
-          <!--Angular Form Errors -->
-          <div *ngIf="(cityForm.get('name')?.invalid && cityForm.get('name')?.touched)" class="invalid-feedback">
-            <div *ngIf="cityForm.errors?.name.required">Name is required.</div>
-            <div *ngIf="cityForm.errors?.name.minlength">Name must be at least 4 characters long.</div>
+              <!--Angular Form Errors -->
+              <div *ngIf="(cityForm.get('name')?.invalid && cityForm.get('name')?.touched)" class="invalid-feedback">
+                <div *ngIf="cityForm.errors?.name.required">Name is required.</div>
+                <div *ngIf="cityForm.errors?.name.minlength">Name must be at least 4 characters long.</div>
+              </div>
+              <!--Server Errors -->
+              <div *ngFor="let error of errors?.name" class="invalid-feedback"></div>
+            </div>
           </div>
-          <!--Server Errors -->
-          <div *ngFor="let error of errors?.name" class="invalid-feedback"></div>
-        </div>
-      </div>
 
-      <!--Select Dropdown-->
-      <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Governorate</label>
-        <div class="col-sm-9">
-          <select class="form-control" formControlName="governorate_id">
-            <option *ngFor="let governorate of governorates" [ngValue]="governorate.id">{{governorate.name}}</option>
-          </select>
+          <!--Select Dropdown-->
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Governorate</label>
+            <div class="col-sm-9">
+              <select class="form-control" formControlName="governorate_id">
+                <option *ngFor="let governorate of governorates"
+                        [ngValue]="governorate.id">{{governorate.name}}</option>
+              </select>
 
-        </div>
+            </div>
+          </div>
+          <!--End Select Dropdown-->
+          <div class="text-end">
+          <button type="submit" class="btn btn-primary px-5" [disabled]="cityForm.invalid">Save</button>
+
+          </div>
+        </form>
       </div>
-      <!--End Select Dropdown-->
-      <button type="submit" class="btn btn-primary" [disabled]="cityForm.invalid">Save</button>
-    </form>
+    </div>
   </div>
 </div>

@@ -3,13 +3,13 @@
     <div class="card">
       <div class="row">
         <div class="col-md-4 pe-md-0">
-          <div class="auth-side-wrapper" [ngStyle]="{ 'background-image': 'url(https://via.placeholder.com/219x452)' }">
+          <div class="auth-side-wrapper" [ngStyle]="{ 'background-image': 'url(/assets/images/login.png)' }">
           </div>
         </div>
 
         <div class="col-md-8 ps-md-0">
           <div class="auth-form-wrapper px-4 py-5">
-            <a routerLink="." class="nobleui-logo logo-light  d-block mb-2">Noble<span>UI</span></a>
+            <a routerLink="." class="nobleui-logo logo-light  d-block mb-2">Coza<span>Store</span></a>
             <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
             <ngb-alert *ngIf="error" [dismissible]="false" (closed)="error = false" [type]="'danger'">Invalid Email Or
               Password
@@ -27,12 +27,8 @@
                        autocomplete="current-password" placeholder="Password"
                        [ngClass]="{'is-invalid':isFormSubmitted && form.password.errors}">
               </div>
-              <div>
-                <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0">Login</button>
-                <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
-                  <i class="feather icon-twitter btn-icon-prepend"></i>
-                  Login with twitter
-                </button>
+              <div class="text-end">
+                <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0 px-4">Login</button>
               </div>
             </form>
           </div>

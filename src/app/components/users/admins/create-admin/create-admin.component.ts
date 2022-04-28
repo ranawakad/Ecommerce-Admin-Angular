@@ -6,7 +6,7 @@ import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { WizardComponent as BaseWizardComponent } from 'angular-archwizard';
 import { AdminService } from 'src/app/services/admin.service';
 import { RoleService } from 'src/app/services/role.service';
-import {GovernoratesService} from "../../../services/governorates.service";
+import {GovernoratesService} from "../../../../services/governorates.service";
 @Component({
   selector: 'app-create-admin',
   templateUrl: './create-admin.component.html',

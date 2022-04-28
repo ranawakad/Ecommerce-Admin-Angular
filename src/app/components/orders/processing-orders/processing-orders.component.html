@@ -28,7 +28,7 @@
             <ngx-datatable-column name="Status" prop="status"></ngx-datatable-column>
             <ngx-datatable-column name="Options" prop="id">
               <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"et-row="row">
-                      <a type="button" class="btn btn-outline-primary btn-icon-text"  href="orders/{{value}}"><i class="feather icon-layers btn-icon-prepend"></i> Details</a>
+                      <a type="button" class="btn btn-outline-primary btn-icon-text"  routerLink="/orders/{{value}}"><i class="feather icon-layers btn-icon-prepend"></i> Details</a>
                     </ng-template>
              </ngx-datatable-column>
           </ngx-datatable>

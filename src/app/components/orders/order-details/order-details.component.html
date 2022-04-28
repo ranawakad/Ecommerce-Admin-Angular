@@ -1,5 +1,3 @@
-
-
 <div class="row">
   <div class="col-md-12 stretch-card">
     <div class="card">
@@ -29,15 +27,36 @@
               </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="Price" prop="price"></ngx-datatable-column>
-            <ngx-datatable-column name="Picked" prop="picked"></ngx-datatable-column>
+            <ngx-datatable-column name="Picked" prop="picked">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <span *ngIf="value" class="badge bg-success">Picked</span>
+                <span *ngIf="!value" class="badge bg-primary">Waiting</span>
+              </ng-template>
+            </ngx-datatable-column>
             <ngx-datatable-column name="Quantity" prop="quantity"></ngx-datatable-column>
-            <ngx-datatable-column name="Fulfilled" prop="fulfilled"></ngx-datatable-column>
-            <ngx-datatable-column name="Actions" prop="product_id">
+            <ngx-datatable-column name="Fulfilled" prop="fulfilled">
+              <ng-template let-value="value" ngx-datatable-cell-template>
+                <span *ngIf="value" class="badge bg-success">Fulfilled</span>
+                <span *ngIf="!value" class="badge bg-primary">Not Fulfilled</span>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Seller" prop="product_id">
               <!-- Button trigger modal -->
-              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"et-row="row">
-                      <button type="button" class="btn btn-outline-primary "(click)="openVerticalCenteredModal(verticalCenteredModal,value)">Seller Details</button>
-                    </ng-template>
-             </ngx-datatable-column>
+              <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value">
+                <button type="button" class="btn btn-outline-primary "
+                        (click)="openVerticalCenteredModal(verticalCenteredModal,value)">Seller Details
+                </button>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Actions">
+              <!-- Button trigger modal -->
+              <ng-template ngx-datatable-cell-template let-status="row.picked" let-id="row.id">
+                <button *ngIf="!status;else picked" type="button" (click)="setDone(id)" class="btn btn-outline-success">Set Picked</button>
+                <ng-template #picked>
+                  <span class="text-center">--</span>
+                </ng-template>
+              </ng-template>
+            </ngx-datatable-column>
           </ngx-datatable>
         </div>
       </div>
@@ -49,7 +68,8 @@
 <!-- Modal -->
 <ng-template #verticalCenteredModal let-modal>
   <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel"><i class="feather icon-umbrella btn-icon-prepend"></i> Seller Data</h5>
+    <h5 class="modal-title" id="exampleModalLabel"><i class="feather icon-umbrella btn-icon-prepend"></i> Seller Data
+    </h5>
     <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
@@ -81,8 +101,12 @@
     </button> -->
   </div>
   <div class="modal-footer">
-    <button type="button" *ngIf="seller.active" class="btn btn-primary" (click)="modal.close('by: save button')">De-activate Seller</button>
-    <button *ngIf="!seller.active" type="button" class="btn btn-primary" (click)="modal.close('by: save button')">Activate Seller</button>
+    <button type="button" *ngIf="seller.active" class="btn btn-primary" (click)="modal.close('by: save button')">
+      De-activate Seller
+    </button>
+    <button *ngIf="!seller.active" type="button" class="btn btn-primary" (click)="modal.close('by: save button')">
+      Activate Seller
+    </button>
     <button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
   </div>
 </ng-template>

@@ -13,10 +13,10 @@ export class AuthService {
   ) { }
 
 
-  login(credentails:Credentials)
+  login(credentials:Credentials)
   {
 
-    return this.http.post(`${environment.apiAdminURL}/login`,credentails);
+    return this.http.post(`${environment.apiAdminURL}/login`,credentials);
   }
   logout()
   {

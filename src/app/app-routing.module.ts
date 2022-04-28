@@ -39,17 +39,17 @@ const routes: Routes = [
       },
       {
         path: 'admins',
-        loadChildren: () => import('./components/admins/admin.module').then(m => m.AdminModule)
+        loadChildren: () => import('./components/users/admins/admin.module').then(m => m.AdminModule)
       },
 
 
       {
         path: 'orders',
-        loadChildren: () => import('./views/components/orders-management/order.module').then(m => m.OrderModule)
+        loadChildren: () => import('./components/orders/order.module').then(m => m.OrderModule)
       },
       {
         path: 'sellers',
-        loadChildren: () => import('./views/components/Sellers-Mangement/seller.module').then(m => m.SellerModule)
+        loadChildren: () => import('./components/users/sellers/seller.module').then(m => m.SellerModule)
       },
       {
         path: 'apps',
@@ -95,7 +95,7 @@ const routes: Routes = [
 
       {
         path: 'customers',
-        loadChildren: () => import('src/app/components/customers/customers.module').then(m => m.CustomersModule)
+        loadChildren: () => import('src/app/components/users/customers/customers.module').then(m => m.CustomersModule)
       },
       {
         path: 'categories',

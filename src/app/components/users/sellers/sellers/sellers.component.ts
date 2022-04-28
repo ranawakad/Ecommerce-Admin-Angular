@@ -49,22 +49,17 @@ export class SellersComponent implements OnInit {
     });
   }
 
-  activeState(value:number){
-
-    console.log(value);
-  }
-
-
   openBasicModal(content: TemplateRef<any>, ID:number) {
     this.modalService.open(content, {}).result.then((result) => {
       this.basicModalCloseResult = "Modal closed" + result
 
       if (result == 'by: save button'){
         this.sellerService.activeStateUpadte(ID).subscribe(res=>{
-          console.log(res.message);
           Swal.fire({
             toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, timerProgressBar: true, title: res.message, icon: 'success'
           })
+          this.setPage(this.page)
+
         },err=>{
           Swal.fire({
             toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, timerProgressBar: true, title: err.message, icon: 'error'

@@ -20,10 +20,11 @@
   <div class="col-md-12 stretch-card">
     <div class="card">
       <div class="card-body">
-        <div class=" text-end">
-          <a class="btn btn-primary mb-4" routerLink="create"><i data-feather="edit" appFeatherIcon></i> Create New
-            Governorate</a>
+        <div class=" text-end mb-4">
+          <a class="btn btn-outline-primary mx-2" routerLink="/city/create"><i data-feather="map" appFeatherIcon></i> Create New City</a>
+          <a class="btn btn-outline-primary" routerLink="create"><i data-feather="map" appFeatherIcon></i> Create New Governorate</a>
         </div>
+
         <table class="table table-bordered table-hover mb-0 text-nowrap">
           <thead>
           <tr>
@@ -41,13 +42,13 @@
               <td class="text-center text-lg text-medium">{{index + 1}}</td>
               <td><h5 class="font-weight-bold text-uppercase">{{governorate.name}}</h5></td>
               <td class="text-center">
-                <button class="btn btn-primary" (click)="openLgModal(cities)">CITIES</button>
+                <button class="btn btn-outline-primary" (click)="openLgModal(cities)">CITIES</button>
               </td>
               <td class="text-center" colspan="2">
-                <a class="btn btn-success btn-icon-text mx-2" routerLink="{{governorate.id}}/edit">
+                <a class="btn btn-outline-success btn-icon-text mx-2" routerLink="{{governorate.id}}/edit">
                   <i class="btn-icon-prepend feather" data-feather="edit" appFeatherIcon></i>Edit
                 </a>
-                <button class="btn btn-danger btn-icon-text" (click)="openVerticalCenteredModal(deleteGovernorateConfirm)">
+                <button class="btn btn-outline-danger btn-icon-text" (click)="openVerticalCenteredModal(deleteGovernorateConfirm)">
                   <i class="btn-icon-prepend feather" data-feather="trash-2" appFeatherIcon></i>Delete
                 </button>
               </td>
@@ -59,10 +60,10 @@
                 </div>
                 <div class="modal-body"><p>Are you sure ?</p></div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" (click)="modal.close({confirm:true,id:governorate.id})">
+                  <button type="button" class="btn btn-outline-danger" (click)="modal.close({confirm:true,id:governorate.id})">
                     CONFIRM
                   </button>
-                  <button type="button" class="btn btn-secondary" (click)="modal.close({confirm:false})">Close</button>
+                  <button type="button" class="btn btn-outline-secondary" (click)="modal.close({confirm:false})">Close</button>
                 </div>
               </ng-template>
               <!--end delete governorate confirm-->

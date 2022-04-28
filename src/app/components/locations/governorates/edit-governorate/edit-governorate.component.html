@@ -12,25 +12,29 @@
     </div>
   </div>
 </div>
-
-<div class="row mt-2">
-  <div>
-    <form [formGroup]="governorateForm" (ngSubmit)="onSubmit()">
-      <div class="row mb-3">
-        <label class="col-sm-3 col-form-label">Governorate Name</label>
-        <div class="col-sm-9">
-          <input type="text" id="name" class="form-control" formControlName="name" required placeholder="Enter Governorate Name">
-          <!--Angular Form Errors -->
-          <div *ngIf="(governorateForm.get('name')?.invalid && governorateForm.get('name')?.touched)" class="invalid-feedback">
-            <div *ngIf="governorateForm.errors?.name.required">Name is required.</div>
-            <div *ngIf="governorateForm.errors?.name.minlength">Name must be at least 4 characters long.</div>
+<div class="d-flex justify-content-center mt-5 h-100">
+  <div class="align-middle w-50 grid-margin">
+    <div class="row mt-2">
+      <div>
+        <form [formGroup]="governorateForm" (ngSubmit)="onSubmit()">
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Governorate Name</label>
+            <div class="col-sm-9">
+              <input type="text" id="name" class="form-control" formControlName="name" required
+                     placeholder="Enter Governorate Name">
+              <!--Angular Form Errors -->
+              <div *ngIf="(governorateForm.get('name')?.invalid && governorateForm.get('name')?.touched)"
+                   class="invalid-feedback">
+                <div *ngIf="governorateForm.errors?.name.required">Name is required.</div>
+                <div *ngIf="governorateForm.errors?.name.minlength">Name must be at least 4 characters long.</div>
+              </div>
+              <!--Server Errors -->
+              <div *ngFor="let error of errors?.name" class="invalid-feedback"></div>
+            </div>
           </div>
-          <!--Server Errors -->
-          <div *ngFor="let error of errors?.name" class="invalid-feedback"></div>
-        </div>
+          <button type="submit" class="btn btn-primary px-5" [disabled]="governorateForm.invalid">Save</button>
+        </form>
       </div>
-
-      <button type="submit" class="btn btn-primary" [disabled]="governorateForm.invalid">Save</button>
-    </form>
+    </div>
   </div>
 </div>
