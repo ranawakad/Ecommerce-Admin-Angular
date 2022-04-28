@@ -7,7 +7,6 @@ export const environment = {
   apiURL:'http://127.0.0.1:8000/api',
   apiAdminURL:'http://127.0.0.1:8000/api/admin',
   images: 'http://127.0.0.1:8000',
-
 };
 
 /*
