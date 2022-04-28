@@ -1,8 +1,9 @@
-import { Component, OnInit,TemplateRef } from '@angular/core';
+import { Component, OnInit,TemplateRef, ViewChild } from '@angular/core';
 import {environment} from "src/environments/environment";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {CategoriesService} from 'src/app/services/categories.service';
-import Swal from 'sweetalert2';
+
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
 @Component({
   selector: 'app-categories',
@@ -16,7 +17,7 @@ export class CategoriesComponent implements OnInit {
   itemsPerPage = 30;
   totalItems: any;
   imageURL = environment.images
-
+  @ViewChild('swal') swal: SwalComponent
   constructor(private categoriesService: CategoriesService,private modalService: NgbModal) {
   }
 
@@ -31,34 +32,22 @@ export class CategoriesComponent implements OnInit {
       this.itemsPerPage = res.data.per_page;
     })
   }
-  sweetalert(type: any, msg: string) {
-    Swal.fire({
-      toast: true,
-      position: 'top',
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
-      title: msg,
-      icon: type
-    })
-  }
 
   deleteCategory(id: number) {
     this.categoriesService.deleteCategory(id).subscribe({
       next: (res) => {
-        res.data.message
-        Swal.fire({
-          toast: true,
-          position: 'top',
-          showConfirmButton: false,
-          timer: 1500,
-          timerProgressBar: true,
-          title: res.data.message,
-          icon: 'success'
-        })
+        this.getPage(1);
+            this.swal.title = res.message
+            this.swal.showConfirmButton = false
+            this.swal.timer = 1500
+            this.swal.fire()
       },
       error: (err) => {
-        console.log(err.error.message)
+        this.swal.title = err.error.message
+            this.swal.showConfirmButton = false
+            this.swal.timer = 1500
+            this.swal.icon='error'
+            this.swal.fire()
       }
     })
   }

@@ -62,12 +62,11 @@ export class EditCategoryComponent implements OnInit {
     console.log(this.formData)
     if (this.formData.valid) {
       const formDetalis = new FormData();
-      formDetalis.append('_method', 'patch');
       formDetalis.append('name', this.formData.get('name')?.value);
       formDetalis.append('description', this.formData.get('description')?.value);
       formDetalis.append('image', this.formData.get('imageSource')?.value);
       if (this.selectedCategory) {
-        console.log(this.formData.value)
+        formDetalis.append('_method', 'patch');
         this.categoryService.updateCategory(this.selectedCategory, formDetalis).subscribe(
           res => {
             this.swal.title = res.message
