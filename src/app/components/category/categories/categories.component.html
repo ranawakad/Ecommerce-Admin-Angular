@@ -46,7 +46,10 @@
                     <button class="btn btn-warning " (click)="openVerticalCenteredModal(deleteConfirm)">Edit</button>
                   </td>
                 <td class="text-center">
-                  <button class="btn btn-danger " (click)="openVerticalCenteredModal(deleteConfirm)">DELETE</button>
+                  <button class="btn btn-danger " 
+                  [swal]="{ title: 'Are Yoe Sure for delete this role', showDenyButton: true, denyButtonText: 'Don\'t save', showCancelButton: true }"
+                                 (confirm)="deleteCategory(category.id)"
+                  >DELETE</button>
                 </td>
   
                 <!-- Modal -->
@@ -78,3 +81,11 @@
       </div>
     </div>
   </div>
+  
+<swal
+  #swal
+   title="" 
+   text=""
+   icon="success" 
+  >
+</swal>

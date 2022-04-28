@@ -20,19 +20,18 @@
           <div class="row mb-3">
             <label class="col-sm-3 col-form-label">Governorate Name</label>
             <div class="col-sm-9">
-              <input type="text" id="name" class="form-control" formControlName="name" required
-                     placeholder="Enter Governorate Name">
-              <!--Angular Form Errors -->
-              <div *ngIf="(governorateForm.get('name')?.invalid && governorateForm.get('name')?.touched)"
-                   class="invalid-feedback">
-                <div *ngIf="governorateForm.errors?.name.required">Name is required.</div>
-                <div *ngIf="governorateForm.errors?.name.minlength">Name must be at least 4 characters long.</div>
+              <input type="text" class="form-control" id="name" formControlName="name"
+                [ngClass]="{'is-invalid': (isSubmitted && form.name?.errors)||(errors?.name)}" placeholder="Enter Governorate Name">
+              <div *ngIf="isSubmitted && form.name.errors?.required" class="invalid-feedback">
+                Required
               </div>
-              <!--Server Errors -->
-              <div *ngFor="let error of errors?.name" class="invalid-feedback"></div>
+              <div *ngIf="isSubmitted && form.name.errors?.minlength" class="invalid-feedback">
+                Name must be at least 4 characters long.
+              </div>
+              <div *ngFor="let error of errors?.name" class="invalid-feedback">{{error}}</div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary px-5" [disabled]="governorateForm.invalid">Save</button>
+          <button type="submit" class="btn btn-primary px-5">Save</button>
         </form>
       </div>
     </div>

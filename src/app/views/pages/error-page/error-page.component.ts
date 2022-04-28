@@ -49,6 +49,14 @@ export class ErrorPageComponent implements OnInit, OnDestroy {
           this.desc = 'Oopps!! There wan an error. Please try agin later.'
         }
         break;
+        case '403':
+        if (!this.title) {
+          this.title = 'Forbidden'
+        }
+        if (!this.desc) {
+          this.desc = 'Oopps!! you don\'t have access for this page'
+        }
+        break;
       default:
         // if (!this.type) {
           this.type = 'Ooops..';

@@ -35,7 +35,7 @@ export class CreateAdminComponent implements OnInit {
     private admin: AdminService,
     private governoratesService:GovernoratesService) {
     this.governoratesService.getAllGovernorates().subscribe(
-      res => this.governates = res
+      res => this.governates = res.data
     )
   }
 

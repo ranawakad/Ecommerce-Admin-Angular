@@ -14,7 +14,7 @@ export class EditGovernorateComponent implements OnInit {
   governorateForm: FormGroup
   errors: any
   selectedGovernorate: number
-
+  isSubmitted=false
   constructor(private activatedRoute: ActivatedRoute, private fb: FormBuilder,
               private governoratesService: GovernoratesService,
               private router: Router) {
@@ -45,15 +45,19 @@ export class EditGovernorateComponent implements OnInit {
 
   //forms
   onSubmit() {
-    if (this.pageTitle == 'Create') {
-      this.createGovernorate()
-    } else if (this.pageTitle == 'Edit') {
-      this.updateGovernorate()
+    if(this.governorateForm.valid)
+    {
+      if (this.pageTitle == 'Create') {
+        this.createGovernorate()
+      } else if (this.pageTitle == 'Edit') {
+        this.updateGovernorate()
+      }
     }
+    this.isSubmitted=true
   }
 
-  get name() {
-    return this.governorateForm.get('name');
+  get form() {
+    return this.governorateForm.controls;
   }
 
   //services calling
@@ -79,7 +83,7 @@ export class EditGovernorateComponent implements OnInit {
       },
       error: (err) => {
         this.sweetalert('error', err.error.message)
-        this.errors = err.errors
+        this.errors = err.error.errors
       }
     })
   }
@@ -91,9 +95,8 @@ export class EditGovernorateComponent implements OnInit {
         this.governorateForm.reset()
       },
       error: (err) => {
-        this.errors = err.errors
+        this.errors = err.error.errors
         this.sweetalert('error', err.error.message)
-
       }
     })
   }
