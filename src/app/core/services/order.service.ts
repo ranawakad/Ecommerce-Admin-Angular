@@ -60,4 +60,8 @@ export class OrderService {
      setFulfilled(ID:number):Observable<any>{
       return this.httpClient.get(`${environment.apiAdminURL}/payments/fulfill/${ID}`,this.httpOptions)
      }
+
+     setPicked(ID:number):Observable<any>{
+      return this.httpClient.get(`${environment.apiAdminURL}/orders/setpicked/${ID}`,this.httpOptions)
+     }
 }

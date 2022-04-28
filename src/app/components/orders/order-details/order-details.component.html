@@ -51,7 +51,7 @@
             <ngx-datatable-column name="Actions">
               <!-- Button trigger modal -->
               <ng-template ngx-datatable-cell-template let-status="row.picked" let-id="row.id">
-                <button *ngIf="!status;else picked" type="button" (click)="setDone(id)" class="btn btn-outline-success">Set Picked</button>
+                <button *ngIf="!status;else picked" type="button" (click)="setPicked(id)" class="btn btn-outline-success">Set Picked</button>
                 <ng-template #picked>
                   <span class="text-center">--</span>
                 </ng-template>

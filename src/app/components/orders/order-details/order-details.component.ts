@@ -86,8 +86,21 @@ export class OrderDetailsComponent implements OnInit {
     }).catch((res) => {});
   }
 
-  setDone(id: any) {
+  setPicked(value:number){
 
+    this.orderService.setPicked(value).subscribe(res=>{
+      console.log(res.message);
+      Swal.fire({
+        toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, timerProgressBar: true, title: res.message, icon: 'success'
+      })
+    },err=>{
+      Swal.fire({
+        toast: true, position: 'top-end', showConfirmButton: false, timer: 2000, timerProgressBar: true, title: err.message, icon: 'error'
+      })
+    });
+
+    this.setPage({offset: 0});
+    console.log(value);
   }
 }
 
