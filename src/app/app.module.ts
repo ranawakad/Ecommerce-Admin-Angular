@@ -13,6 +13,7 @@ import { ErrorPageComponent } from './views/pages/error-page/error-page.componen
 import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { TokenInterceptorService } from './interceptors/token-interceptor.service';
 
 
 
@@ -43,6 +44,11 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
           scss: () => import('highlight.js/lib/languages/scss'),
         }
       }
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi:true
     }
   ],
   bootstrap: [AppComponent]

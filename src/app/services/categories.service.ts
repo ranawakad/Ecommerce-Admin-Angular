@@ -12,7 +12,7 @@ export class CategoriesService {
   constructor(private httpClient: HttpClient) { }
 
   getAllCategories(page: number = 1): Observable<any> {
-    return this.httpClient.get(`${environment.apiURL}/categories?page=${page}`)
+    return this.httpClient.get(`${environment.apiURL}/category?page=${page}`)
   }
 
   getCategory(id: number): Observable<any> {
@@ -27,7 +27,7 @@ export class CategoriesService {
   }
 
   deleteCategory(id: number): Observable<any> {
-    return this.httpClient.delete(`${environment.apiURL}/categories/${id}`)
+    return this.httpClient.delete(`${environment.apiURL}/category/${id}`)
   }
 }
 

@@ -84,7 +84,7 @@ export class OrderDetailsComponent implements OnInit {
       }
 
          this.seller = {} as Seller
-    }).catch((res) => {});
+    }).catch(() => {});
   }
 
   setPicked(value:number){
