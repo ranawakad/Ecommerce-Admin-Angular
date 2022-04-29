@@ -50,6 +50,25 @@ export const MENU: MenuItem[] = [
       }
     ]
   },
+  {
+    label: 'Payments Management',
+    isTitle: true
+  },
+  {
+
+    label: 'Payments',
+    icon: 'dollar-sign',
+    subItems: [
+      {
+        label: 'Fulfilled Orders',
+        link: '/payments/allfulfilled',
+      },
+      {
+        label: 'Unfulfilled Orders',
+        link: '/payments/allunfulfilled',
+      },
+    ]
+  },
   //end orders section
   //start user management section
 

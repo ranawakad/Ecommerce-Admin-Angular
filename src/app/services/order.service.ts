@@ -27,6 +27,15 @@ export class OrderService {
       return this.httpClient.get(`${environment.apiAdminURL}/payments/fulfilled/${sellerID}?page=${page}`,this.httpOptions)
      }
 
+     allfulfilled(page: number = 1):Observable<any>{
+      return this.httpClient.get(`${environment.apiAdminURL}/payments/allfulfilled?page=${page}`,this.httpOptions)
+     }
+
+     allunfulfilled(page: number = 1):Observable<any>{
+      return this.httpClient.get(`${environment.apiAdminURL}/payments/allunfulfilled?page=${page}`,this.httpOptions)
+     }
+
+
     //  Orders-------------------
 
       // Processing &  Not Picked
