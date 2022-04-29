@@ -8,48 +8,59 @@
 <div class="row">
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
-      <h4 class="card-header">City Management</h4>
+      <div class="card-body">
+        <h4 class="card-title">City Management</h4>
+      </div>
     </div>
   </div>
 </div>
-
 <div class="d-flex justify-content-center mt-5 h-100">
   <div class="align-middle w-50 grid-margin">
-    <div class="row mt-2">
-      <div>
-        <form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
-          <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">City Name</label>
-            <div class="col-sm-9">
-              <input type="text" id="name" class="form-control" formControlName="name" required>
+    <div class="card">
+      <div class="card-body">
+        <div class="row mt-2">
+          <div>
+            <form [formGroup]="cityForm" (ngSubmit)="onSubmit()">
+              <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">City Name</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="name" formControlName="name"
+                         [ngClass]="{'is-invalid': (isSubmitted && form.name?.errors)||(errors?.name)}"
+                         placeholder="Enter City Name">
+                  <div *ngIf="isSubmitted && form.name.errors?.required" class="invalid-feedback">
+                    Required
+                  </div>
+                  <div *ngIf="isSubmitted && form.name.errors?.minlength" class="invalid-feedback">
+                    Name must be at least 4 characters long.
+                  </div>
+                  <div *ngFor="let error of errors?.name" class="invalid-feedback">{{error}}</div>
+                </div>
 
-              <!--Angular Form Errors -->
-              <div *ngIf="(cityForm.get('name')?.invalid && cityForm.get('name')?.touched)" class="invalid-feedback">
-                <div *ngIf="cityForm.errors?.name.required">Name is required.</div>
-                <div *ngIf="cityForm.errors?.name.minlength">Name must be at least 4 characters long.</div>
               </div>
-              <!--Server Errors -->
-              <div *ngFor="let error of errors?.name" class="invalid-feedback"></div>
-            </div>
-          </div>
 
-          <!--Select Dropdown-->
-          <div class="row mb-3">
-            <label class="col-sm-3 col-form-label">Governorate</label>
-            <div class="col-sm-9">
-              <select class="form-control" formControlName="governorate_id">
-                <option *ngFor="let governorate of governorates"
-                        [ngValue]="governorate.id">{{governorate.name}}</option>
-              </select>
+              <!--Select Dropdown-->
+              <div class="row mb-3">
+                <label class="col-sm-3 col-form-label">Governorate</label>
+                <div class="col-sm-9">
+                  <select
+                    [ngClass]="{'is-invalid': (isSubmitted && form.governorate_id?.errors)||(errors?.governorate_id)}"
+                    class="form-control" formControlName="governorate_id">
+                    <option *ngFor="let governorate of governorates"
+                            [ngValue]="governorate.id">{{governorate.name}}</option>
+                  </select>
 
-            </div>
-          </div>
-          <!--End Select Dropdown-->
-          <div class="text-end">
-          <button type="submit" class="btn btn-primary px-5" [disabled]="cityForm.invalid">Save</button>
+                </div>
+              </div>
 
+              <div *ngIf="isSubmitted && form.governorate_id.errors?.required" class="invalid-feedback">Required</div>
+              <div *ngFor="let error of errors?.governorate_id" class="invalid-feedback">{{error}}</div>
+              <!--End Select Dropdown-->
+              <div class="text-end">
+                <button type="submit" class="btn btn-primary px-5">Save</button>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

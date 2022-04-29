@@ -5,6 +5,17 @@
         <li class="breadcrumb-item active" aria-current="page">Create</li>
     </ol>
 </nav>
+
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Admins Management</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="d-flex justify-content-center mt-5 h-100">
     <div class="align-middle w-50 grid-margin">
         <div class="card">
@@ -14,15 +25,15 @@
                 <aw-wizard #wizardForm>
 
                     <aw-wizard-step stepTitle="Role Name">
-                        <div class="d-flex justify-content-center mt-5 mb-5">    
+                        <div class="d-flex justify-content-center mt-5 mb-5">
                             <p>Be carfull when you edit roles of admin</p>
                         </div>
-                        
+
                             <div class="d-flex justify-content-center mt-2">
-                                
+
                                 <button (click)="Submit()" class="btn btn-primary" type="submit">Continue</button>
                             </div>
-                        
+
                     </aw-wizard-step>
 
                     <aw-wizard-step stepTitle="Assign Admin Role ">
@@ -31,8 +42,8 @@
                                 <label for="permissins" class="col-sm-3 col-form-label">Permissins</label>
                                 <ng-select #select
                                       [items]="roles"
-                                      [multiple]=true bindLabel="name" 
-                                      [selectableGroup]="true" [selectableGroupAsModel]="false" 
+                                      [multiple]=true bindLabel="name"
+                                      [selectableGroup]="true" [selectableGroupAsModel]="false"
                                       [closeOnSelect]="false"
                                       [hideSelected]="true"
                                       bindValue="id"
@@ -74,9 +85,9 @@
 </div>
 <swal
   #addeSwal
-   title="Role has been saved" 
+   title="Role has been saved"
     text=""
-    icon="success" 
+    icon="success"
   >
 </swal>
 

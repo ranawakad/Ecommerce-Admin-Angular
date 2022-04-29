@@ -8,12 +8,17 @@
 <div class="row">
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
-      <h4 class="card-header">Governorate Management</h4>
+      <div class="card-body">
+        <h4 class="card-title">Governorate Management</h4>
+      </div>
     </div>
   </div>
 </div>
+
 <div class="d-flex justify-content-center mt-5 h-100">
   <div class="align-middle w-50 grid-margin">
+    <div class="card">
+      <div class="card-body">
     <div class="row mt-2">
       <div>
         <form [formGroup]="governorateForm" (ngSubmit)="onSubmit()">
@@ -35,5 +40,7 @@
         </form>
       </div>
     </div>
+  </div>
+      </div>
   </div>
 </div>

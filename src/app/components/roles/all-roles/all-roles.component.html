@@ -5,6 +5,15 @@
     </ol>
 </nav>
 
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Roles Management</h4>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="row">
     <div class="col-md-12 stretch-card">
@@ -12,11 +21,11 @@
             <div class="card-body">
                 <h6 class="card-title">Roles</h6>
                 <div class="table-responsive">
-                    <ngx-datatable class="bootstrap  expandable" 
-                    [rows]="rows" 
+                    <ngx-datatable class="bootstrap  expandable"
+                    [rows]="rows"
                     [loadingIndicator]="loadingIndicator"
-                    [columnMode]="ColumnMode.force" 
-                    [footerHeight]="50" 
+                    [columnMode]="ColumnMode.force"
+                    [footerHeight]="50"
                     rowHeight="auto"
                     [externalPaging]="true"
                     [count]="page.totalElements"
@@ -34,13 +43,13 @@
                             <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
                                 let-row="row">
                                 <button type="button" (click)="update(value)" class="btn btn-outline-success me-3">
-                                    Update 
+                                    Update
                                 </button>
                                 <button
                                 [swal]="{ title: 'Are Yoe Sure for delete this role', showDenyButton: true, denyButtonText: 'Don\'t save', showCancelButton: true }"
                                  (confirm)="deleteRole(value)"
                                  type="button" class="btn btn-outline-danger">
-                                    Delete 
+                                    Delete
                                 </button>
                             </ng-template>
                         </ngx-datatable-column>

@@ -18,7 +18,7 @@ export class EditCityComponent implements OnInit {
   errors:any
 
   selectedCity: number
-
+  isSubmitted=false
   governorates: {
     id: number,
     name: string,
@@ -59,24 +59,20 @@ export class EditCityComponent implements OnInit {
     })
   }
 
-  get name() {
-    return this.cityForm.get('name');
+  get form() {
+    return this.cityForm.controls;
   }
-
-  get governorate_id() {
-    return this.cityForm.get('governorate_id');
-  }
-
   //forms
   onSubmit() {
-    if(this.pageTitle=='Create'){
-      this.createCity()
-      }
-      else if(this.pageTitle=='Edit'){
+    if(this.cityForm.valid)
+    {
+      if (this.pageTitle == 'Create') {
+        this.createCity()
+      } else if (this.pageTitle == 'Edit') {
         this.updateCity()
       }
-
-    console.log(this.cityForm.value);
+    }
+    this.isSubmitted=true
   }
 
   //services calling

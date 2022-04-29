@@ -23,10 +23,8 @@
                 <h6 class="card-title">Create New Role</h6>
 
                 <aw-wizard #wizardForm>
-
                     <aw-wizard-step stepTitle="Role Name">
                         <form (ngSubmit)="form1Submit()" [formGroup]="validationForm1">
-
                             <div class="row mb-3">
                                 <label for="roleName" class="col-sm-3 col-form-label">Role name</label>
                                 <div class="col-sm-9">
@@ -56,8 +54,8 @@
                                 <label for="permissins" class="col-sm-3 col-form-label">Permissins</label>
                                 <ng-select #select
                                       [items]="permissions"
-                                      [multiple]=true bindLabel="name" 
-                                      [selectableGroup]="true" [selectableGroupAsModel]="false" 
+                                      [multiple]=true bindLabel="name"
+                                      [selectableGroup]="true" [selectableGroupAsModel]="false"
                                       [closeOnSelect]="false"
                                       bindValue="id"
                                       [hideSelected]="true"
@@ -99,8 +97,8 @@
 </div>
 <swal
   #addeSwal
-   title="Role has been saved" 
+   title="Role has been saved"
     text=""
-    icon="success" 
+    icon="success"
   >
 </swal>

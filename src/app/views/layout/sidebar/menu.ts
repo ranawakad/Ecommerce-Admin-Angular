@@ -1,15 +1,15 @@
 import {MenuItem} from './menu.model';
 
 export const MENU: MenuItem[] = [
-  {
-    label: 'Home',
-    isTitle: true
-  },
-  {
-    label: 'Dashboard',
-    icon: 'home',
-    link: '/dashboard'
-  },
+  // {
+  //   label: 'Home',
+  //   isTitle: true
+  // },
+  // {
+  //   label: 'Dashboard',
+  //   icon: 'home',
+  //   link: '/dashboard'
+  // },
   //start section
   {
     label: 'Products Management',
@@ -37,15 +37,15 @@ export const MENU: MenuItem[] = [
     icon: 'truck',
     subItems: [
       {
-        label: 'Processing Orders',
+        label: 'Processing',
         link: '/orders/processing',
       },
       {
-        label: 'Picked Orders',
+        label: 'Prepared',
         link: '/orders/picked',
       },
       {
-        label: 'On-way Orders',
+        label: 'On-way',
         link: '/orders/onway',
       }
     ]
