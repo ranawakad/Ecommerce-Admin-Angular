@@ -3,11 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Order } from 'src/app/core/models/order';
-import { Page } from 'src/app/models/page';
-import { OrderService } from 'src/app/services/order.service';
+import { Page } from 'src/app/core/models/page';
 import { Seller } from 'src/app/core/models/seller';
+import { OrderService } from 'src/app/services/order.service';
 import { SellerService } from 'src/app/services/seller.service';
 import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-order-details',
