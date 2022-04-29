@@ -13,7 +13,7 @@ import { AdminService } from 'src/app/services/admin.service';
 export class AllAdminsComponent implements OnInit {
   loadingIndicator = true;
   ColumnMode = ColumnMode;
-  rows=[] 
+  rows=[]
   page = new Page()
   @ViewChild('deleteSwal') swal:SwalComponent
   SelectionType = SelectionType;
@@ -43,7 +43,7 @@ export class AllAdminsComponent implements OnInit {
   }
   update(id:number)
   {
-    
+
     this.router.navigate(['/admins/update/'+id])
   }
   select(event:any)
@@ -52,12 +52,12 @@ export class AllAdminsComponent implements OnInit {
   }
   deleteRole(id:number)
   {
-    
+
     this.admin.deleteAdmin(id).subscribe(
       (res:any)=> {
         this.swal.title=res.message
         this.swal.icon='success'
-        this.router.navigate(['/admins']) 
+        this.router.navigate(['/admins'])
         this.swal.fire()
         this.setPage({offset:0})
       },

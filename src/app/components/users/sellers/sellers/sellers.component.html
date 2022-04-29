@@ -34,13 +34,13 @@
             <ngx-datatable-column name="Unfulfilled" prop="id">
               <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value">
                 <a type="button" class="btn btn-outline-primary btn-icon-text"
-                   routerLink="/orders/unfulfilled/{{value}}">Unfulfilled</a>
+                   routerLink="/payments/unfulfilled/{{value}}">Unfulfilled</a>
               </ng-template>
             </ngx-datatable-column>
 
             <ngx-datatable-column name="Fulfilled" prop="id">
               <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value">
-                <a type="button" class="btn btn-outline-primary btn-icon-text" routerLink="/orders/fulfilled/{{value}}">Fulfilled</a>
+                <a type="button" class="btn btn-outline-primary btn-icon-text" routerLink="/payments/fulfilled/{{value}}">Fulfilled</a>
               </ng-template>
             </ngx-datatable-column>
 

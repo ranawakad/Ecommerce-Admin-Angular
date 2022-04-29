@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ColumnMode } from '@swimlane/ngx-datatable';
-import { Seller } from 'src/app/core/models/seller';
-import { SellerService } from 'src/app/core/services/seller.service';
-import { Page } from 'src/app/models/page';
+import { SellerService } from 'src/app/services/seller.service';
+import { Page } from 'src/app/core/models/page';
 import Swal from 'sweetalert2';
+import { Seller } from 'src/app/core/models/seller';
 
 @Component({
   selector: 'app-sellers',
